@@ -18,6 +18,7 @@ SOURCES += main.cpp\
     baseitem.cpp \
     prefdialog.cpp \
     cablecover.cpp \
+    jsettings.cpp
 
 HEADERS  += mainwindow.h \
     baseitem.h \
@@ -38,8 +39,12 @@ HEADERS  += mainwindow.h \
     jsoncons/jsoncons.hpp \
     jsoncons/jsoncons_config.hpp \
     jsoncons/output_format.hpp \
-    jsoncons/parse_error_handler.hpp
+    jsoncons/parse_error_handler.hpp \
+    jsettings.h
 
 FORMS    += mainwindow.ui \
     prefdialog.ui \
     cablecover.ui
+
+DISTFILES += \
+    settings.conf

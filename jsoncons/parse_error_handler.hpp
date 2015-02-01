@@ -135,9 +135,11 @@ public:
         return instance;
     }
 private:
-    virtual void do_warning(std::error_code,
+    virtual void do_warning(std::error_code ec,
                             const basic_parsing_context<Char>& context) throw (json_parse_exception) 
     {
+        // pasted from next function
+        throw json_parse_exception(ec,context.line_number(),context.column_number());
     }
 
     virtual void do_error(std::error_code ec,
