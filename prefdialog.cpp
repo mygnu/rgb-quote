@@ -6,8 +6,7 @@ PrefDialog::PrefDialog(QSettings &settings, QWidget *parent) :
     ui(new Ui::PrefDialog)
 {
     ui->setupUi(this);
-    jsettings.test();
-    //settings.setValue("Item1/width/test", 68);
+    settings.setValue("mainwindow/size", parent->size());
 }
 
 PrefDialog::~PrefDialog()

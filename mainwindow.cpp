@@ -7,7 +7,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    settings("MyGNU", "RGB-Quote")
+    settings(QSettings::IniFormat, QSettings::UserScope, "MyGNU", "RGB-Quote")
 {
     ui->setupUi(this);
     createMenus();
