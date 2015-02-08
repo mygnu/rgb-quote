@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QAction>
 #include <QMenu>
 
 #include "prefdialog.h"
@@ -25,9 +24,9 @@ private slots:
     void selectionMade(const int itemNumber);
 private:
     Ui::MainWindow *ui;
-    QAction *editPrefAct = nullptr;
-    QMenu *editMenu = nullptr;
-    CableCover *cableCover1 = nullptr;
+    QAction *editPrefAct{nullptr};
+    QMenu *editMenu{nullptr};
+    CableCover *cableCover1{nullptr};
 
     QSettings settings;
     void createMenus();

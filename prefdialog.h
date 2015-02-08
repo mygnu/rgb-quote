@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <QSettings>
-
+#include "jsettings.h"
 
 namespace Ui {
 class PrefDialog;
@@ -19,6 +19,7 @@ public:
 
 private:
     Ui::PrefDialog *ui;
+    JSettings jsettings;
 
 };
 

@@ -9,6 +9,7 @@ class JSettings
 public:
     JSettings();
     ~JSettings();
+    void test();
 private:
     jsoncons::json settings;
 

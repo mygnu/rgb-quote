@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QString>
 
+
+
 namespace Ui {
 class CableCover;
 }
@@ -17,9 +19,14 @@ public:
     explicit CableCover(QWidget *parent = 0);
     ~CableCover();
 
+    double designVal();
+    double flasgesVal();
 private:
     Ui::CableCover *ui;
+    const QVector<QString> designItems{"Open Ends", "One End Closed", "Both Ends Closed"};
 
+
+    void setupMenus();
 };
 
 #endif // CABLECOVER_H
