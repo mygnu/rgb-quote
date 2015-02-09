@@ -8,6 +8,8 @@ CableCover::CableCover(QWidget *parent) :
 {
     ui->setupUi(this);
     setupMenus();
+    connectSignals();
+    ui->fixingFlangeLineEdit->setValidator(new QDoubleValidator(0, 1000, 2, this));
 }
 
 CableCover::~CableCover()
@@ -28,4 +30,14 @@ double CableCover::designVal()
 {
 
     return 0.0;
+}
+
+void CableCover::connectSignals()
+{
+
+}
+
+void CableCover::calculate()
+{
+    ui->lableResult->setText(ui->fixingFlangeLineEdit->text());
 }

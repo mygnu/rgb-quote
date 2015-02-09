@@ -141,7 +141,7 @@
                <x>0</x>
                <y>0</y>
                <width>682</width>
-               <height>92</height>
+               <height>95</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_4"/>
@@ -207,7 +207,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_3">
+         <widget class="QPushButton" name="pushButtonCalculate">
           <property name="text">
            <string>Calculate</string>
           </property>
@@ -232,7 +232,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
@@ -249,7 +249,7 @@
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>scrollArea</tabstop>
-  <tabstop>pushButton_3</tabstop>
+  <tabstop>pushButtonCalculate</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>comboBox</tabstop>

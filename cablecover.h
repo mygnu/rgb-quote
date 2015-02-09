@@ -21,12 +21,17 @@ public:
 
     double designVal();
     double flasgesVal();
+
+public slots:
+    void calculate();
+
 private:
     Ui::CableCover *ui;
     const QVector<QString> designItems{"Open Ends", "One End Closed", "Both Ends Closed"};
 
 
     void setupMenus();
+    void connectSignals();
 };
 
 #endif // CABLECOVER_H

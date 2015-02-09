@@ -41,6 +41,8 @@ void MainWindow::selectionMade(const int itemNumber)
         cableCover1 = new CableCover(this);
         ui->scrollArea->setWidget(cableCover1);
         ui->Item_label->setText(cableCover1->name);
+        connect(ui->pushButtonCalculate, SIGNAL(clicked()),
+                cableCover1, SLOT(calculate()));
     }
 }
 
