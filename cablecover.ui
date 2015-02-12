@@ -108,7 +108,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_3">
+          <widget class="QLineEdit" name="WidthLineEdit">
            <property name="inputMethodHints">
             <set>Qt::ImhDigitsOnly</set>
            </property>
@@ -121,7 +121,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_4">
+          <widget class="QLineEdit" name="DepthLineEdit">
            <property name="inputMethodHints">
             <set>Qt::ImhDigitsOnly</set>
            </property>
@@ -134,7 +134,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_5">
+          <widget class="QLineEdit" name="LentgthLineEdit">
            <property name="inputMethodHints">
             <set>Qt::ImhDigitsOnly</set>
            </property>
@@ -198,12 +198,9 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QCheckBox" name="flanges">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
+          <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>Flanges      </string>
+            <string>Flanges</string>
            </property>
           </widget>
          </item>
@@ -255,11 +252,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
+          <widget class="QComboBox" name="flangesComboBox"/>
          </item>
          <item>
           <widget class="QComboBox" name="designComboBox">
@@ -313,19 +306,16 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QCheckBox" name="fixinHoles">
-           <property name="enabled">
-            <bool>true</bool>
-           </property>
+          <widget class="QLabel" name="placeholder">
            <property name="text">
             <string>Fixing Holes</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_4">
+          <widget class="QLabel" name="label_5">
            <property name="text">
-            <string>Dimentions</string>
+            <string>Finishes</string>
            </property>
            <property name="buddy">
             <cstring>materialComboBox</cstring>
@@ -336,16 +326,6 @@
           <widget class="QLabel" name="label_6">
            <property name="text">
             <string>Quantity</string>
-           </property>
-           <property name="buddy">
-            <cstring>materialComboBox</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>Finishes</string>
            </property>
            <property name="buddy">
             <cstring>materialComboBox</cstring>
@@ -370,34 +350,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QLabel" name="placeholder">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="dimentionsComboBox">
-           <property name="contextMenuPolicy">
-            <enum>Qt::ActionsContextMenu</enum>
-           </property>
-           <property name="acceptDrops">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="placeholderText">
-            <string>1</string>
-           </property>
-          </widget>
+          <widget class="QComboBox" name="fixingHolesComboBox"/>
          </item>
          <item>
           <widget class="QComboBox" name="finishComboBox">
@@ -406,6 +359,19 @@
            </property>
            <property name="acceptDrops">
             <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="quantityLineEdit">
+           <property name="inputMethodHints">
+            <set>Qt::ImhDigitsOnly</set>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>1</string>
            </property>
           </widget>
          </item>
@@ -506,16 +472,12 @@
  </widget>
  <tabstops>
   <tabstop>fixingFlangeLineEdit</tabstop>
-  <tabstop>lineEdit_3</tabstop>
-  <tabstop>lineEdit_4</tabstop>
-  <tabstop>lineEdit_5</tabstop>
-  <tabstop>flanges</tabstop>
-  <tabstop>fixinHoles</tabstop>
+  <tabstop>WidthLineEdit</tabstop>
+  <tabstop>DepthLineEdit</tabstop>
+  <tabstop>LentgthLineEdit</tabstop>
   <tabstop>designComboBox</tabstop>
   <tabstop>materialComboBox</tabstop>
   <tabstop>thicknessComboBox</tabstop>
-  <tabstop>dimentionsComboBox</tabstop>
-  <tabstop>lineEdit</tabstop>
   <tabstop>finishComboBox</tabstop>
  </tabstops>
  <resources/>
