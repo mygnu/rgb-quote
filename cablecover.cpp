@@ -1,6 +1,7 @@
 #include "cablecover.h"
 #include "ui_cablecover.h"
 #include <QDebug>
+#include <QScroller>
 
 CableCover::CableCover(QWidget *parent) :
     QWidget(parent),
@@ -10,6 +11,7 @@ CableCover::CableCover(QWidget *parent) :
     setupMenus();
     connectSignals();
     ui->fixingFlangeLineEdit->setValidator(new QDoubleValidator(0, 1000, 2, this));
+   QScroller::grabGesture(this, QScroller::TouchGesture);
 }
 
 CableCover::~CableCover()

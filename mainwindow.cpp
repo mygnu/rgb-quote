@@ -2,6 +2,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QScroller>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -39,7 +40,9 @@ void MainWindow::selectionMade(const int itemNumber)
     if(itemNumber == 1)
     {
         cableCover1 = new CableCover(this);
-        ui->scrollArea->setWidget(cableCover1);
+       
+        QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
+         ui->scrollArea->setWidget(cableCover1);
         ui->Item_label->setText(cableCover1->name);
         connect(ui->pushButtonCalculate, SIGNAL(clicked()),
                 cableCover1, SLOT(calculate()));
