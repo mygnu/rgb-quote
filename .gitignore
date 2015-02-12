@@ -1,4 +1,9 @@
 /build/*
 /RGB-Quote.pro.user*
 *.*~
-
+*moc*
+Makefile
+*.so
+*.o
+ui*
+.c4droid
