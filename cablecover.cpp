@@ -11,7 +11,7 @@ CableCover::CableCover(QWidget *parent) :
     setupMenus();
     connectSignals();
     ui->fixingFlangeLineEdit->setValidator(new QDoubleValidator(0, 1000, 2, this));
-   QScroller::grabGesture(this, QScroller::TouchGesture);
+    QScroller::grabGesture(this, QScroller::TouchGesture);
 }
 
 CableCover::~CableCover()

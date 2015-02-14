@@ -31,6 +31,7 @@ public:
     double priceSheet3_0mm;
 
 
+    void load();
 private:
 
 

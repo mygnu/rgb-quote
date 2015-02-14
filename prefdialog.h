@@ -2,6 +2,8 @@
 #define PREFDIALOG_H
 
 #include <QDialog>
+#include <QLineEdit>
+
 #include "values.h"
 
 namespace Ui {
@@ -16,11 +18,16 @@ public:
     explicit PrefDialog(Values &val, QWidget *parent = 0);
     ~PrefDialog();
 
+private slots:
+    void onAccept();
+
 private:
     Values *values{nullptr};
     Ui::PrefDialog *ui;
-    void setDefaults();
+    void loadValuesInGui();
 
+    void saveValues();
+    double checkLineEdit(QLineEdit *lineEdit);
 };
 
 #endif // PREFDIALOG_H
