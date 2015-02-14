@@ -15,12 +15,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    baseitem.cpp \
     prefdialog.cpp \
     cablecover.cpp
 
 HEADERS  += mainwindow.h \
-    baseitem.h \
     prefdialog.h \
     cablecover.h \
 

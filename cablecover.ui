@@ -74,6 +74,16 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Quantity</string>
+           </property>
+           <property name="buddy">
+            <cstring>materialComboBox</cstring>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -146,6 +156,19 @@
            </property>
           </widget>
          </item>
+         <item>
+          <widget class="QLineEdit" name="quantityLineEdit">
+           <property name="inputMethodHints">
+            <set>Qt::ImhDigitsOnly</set>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="placeholderText">
+            <string>1</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
       </layout>
@@ -205,16 +228,6 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Design </string>
-           </property>
-           <property name="buddy">
-            <cstring>designComboBox</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
             <string>Material</string>
@@ -253,16 +266,6 @@
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
           <widget class="QComboBox" name="flangesComboBox"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="designComboBox">
-           <property name="contextMenuPolicy">
-            <enum>Qt::ActionsContextMenu</enum>
-           </property>
-           <property name="acceptDrops">
-            <bool>true</bool>
-           </property>
-          </widget>
          </item>
          <item>
           <widget class="QComboBox" name="materialComboBox">
@@ -306,6 +309,16 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Design </string>
+           </property>
+           <property name="buddy">
+            <cstring>designComboBox</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QLabel" name="placeholder">
            <property name="text">
             <string>Fixing Holes</string>
@@ -316,16 +329,6 @@
           <widget class="QLabel" name="label_5">
            <property name="text">
             <string>Finishes</string>
-           </property>
-           <property name="buddy">
-            <cstring>materialComboBox</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Quantity</string>
            </property>
            <property name="buddy">
             <cstring>materialComboBox</cstring>
@@ -350,10 +353,7 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QComboBox" name="fixingHolesComboBox"/>
-         </item>
-         <item>
-          <widget class="QComboBox" name="finishComboBox">
+          <widget class="QComboBox" name="designComboBox">
            <property name="contextMenuPolicy">
             <enum>Qt::ActionsContextMenu</enum>
            </property>
@@ -363,15 +363,15 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="quantityLineEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
+          <widget class="QComboBox" name="fixingHolesComboBox"/>
+         </item>
+         <item>
+          <widget class="QComboBox" name="finishComboBox">
+           <property name="contextMenuPolicy">
+            <enum>Qt::ActionsContextMenu</enum>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="placeholderText">
-            <string>1</string>
+           <property name="acceptDrops">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -475,7 +475,6 @@
   <tabstop>WidthLineEdit</tabstop>
   <tabstop>DepthLineEdit</tabstop>
   <tabstop>LentgthLineEdit</tabstop>
-  <tabstop>designComboBox</tabstop>
   <tabstop>materialComboBox</tabstop>
   <tabstop>thicknessComboBox</tabstop>
   <tabstop>finishComboBox</tabstop>
