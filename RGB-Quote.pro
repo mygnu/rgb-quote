@@ -16,11 +16,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     prefdialog.cpp \
-    cablecover.cpp
+    cablecover.cpp \
+    values.cpp
 
 HEADERS  += mainwindow.h \
     prefdialog.h \
     cablecover.h \
+    values.h
 
 
 FORMS    += mainwindow.ui \

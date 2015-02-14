@@ -7,8 +7,7 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    settings(QSettings::IniFormat, QSettings::UserScope, "MyGNU", "RGB-Quote")
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     createMenus();
@@ -16,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+
     delete ui;
 }
 
@@ -40,7 +40,7 @@ void MainWindow::selectionMade(const int itemNumber)
     if(itemNumber == 1)
     {
         cableCover1 = new CableCover(this);
-       
+
         QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
          ui->scrollArea->setWidget(cableCover1);
         ui->Item_label->setText(cableCover1->name);
@@ -49,9 +49,15 @@ void MainWindow::selectionMade(const int itemNumber)
     }
 }
 
+void MainWindow::grabSettings()
+{
+
+}
+
+
 void MainWindow::onPrefClicked()
 {
-    pref = new PrefDialog(settings, this);
+    pref = new PrefDialog(values, this);
     pref->setAttribute(Qt::WA_DeleteOnClose);
     pref->show();
 }

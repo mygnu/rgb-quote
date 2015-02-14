@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMenu>
 
+
 #include "prefdialog.h"
 #include "cablecover.h"
 
@@ -22,13 +23,17 @@ public:
 private slots:
     void onPrefClicked();
     void selectionMade(const int itemNumber);
+    void grabSettings();
+
+
+
 private:
+    Values values;
     Ui::MainWindow *ui;
     QAction *editPrefAct{nullptr};
     QMenu *editMenu{nullptr};
     CableCover *cableCover1{nullptr};
 
-    QSettings settings;
     void createMenus();
     PrefDialog *pref = nullptr;
     const QVector<QString> comboItems{"None Selected", "Cable Cover", "Item Two"};
