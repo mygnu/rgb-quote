@@ -24,12 +24,11 @@ void PrefDialog::setDefaults()
 
     if(settings.contains("rgb/orderNumber"))
     {
-        ui->orderNumberLineEdit->setText(settings.value("rgb/orderNumber").toString());
+        ui->orderNumberLineEdit->setPlaceholderText(settings.value("rgb/orderNumber").toString());
         ui->orderNumberLineEdit->setReadOnly(true);
     }
     else
     {
-
         settings.setValue("rgb/orderNumber", 10000);
     }
 }

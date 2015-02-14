@@ -1,6 +1,6 @@
 /build/*
 /RGB-Quote.pro.user*
-*.*~
+*~
 *moc*
 Makefile
 *.so
