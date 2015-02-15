@@ -3,6 +3,7 @@
 #include "ui_prefdialog.h"
 
 #include <QDebug>
+#include <QScroller>
 
 PrefDialog::PrefDialog(Values &val, QWidget *parent) :
     QDialog(parent),
@@ -13,6 +14,7 @@ PrefDialog::PrefDialog(Values &val, QWidget *parent) :
     loadValuesInGui();
     connect(ui->buttonBox, SIGNAL(accepted()),
             this, SLOT(onAccept()));
+            QScroller::grabGesture(this, QScroller::TouchGesture);
 }
 
 PrefDialog::~PrefDialog()
@@ -91,4 +93,3 @@ void PrefDialog::setDoubleValue(QLineEdit *le, QString name)
     else
         le->setPlaceholderText("Set Value");
 }
-
