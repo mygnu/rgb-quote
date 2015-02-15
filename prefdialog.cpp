@@ -56,7 +56,8 @@ void PrefDialog::onAccept()
 {
     saveValues();
     values->load();
-    qDebug() << values->thick0_6mmKG << values->thick1_6mmKG;
+ values->addOrder();
+    qDebug() << values->orderNumber;
 }
 
 void PrefDialog::saveValues()
@@ -68,7 +69,14 @@ void PrefDialog::saveValues()
     settings.setValue("values/thick30mmKG", getDoubleValue(ui->kgFor3_0mmLE));
     settings.setValue("values/flangesCharge", getDoubleValue(ui->flangesChargeLE));
     settings.setValue("values/galvPKG", getDoubleValue(ui->galvaniseChargeLE));
-
+    settings.setValue("values/sprayPaintPMS", getDoubleValue(ui->sprayPaintChargeLE));
+    settings.setValue("values/powderCotePMS", getDoubleValue(ui->powderCoteChargeLE));
+    settings.setValue("values/priceSheet06mm", getDoubleValue(ui->priceFor0_6mmLE));
+    settings.setValue("values/priceSheet16mm", getDoubleValue(ui->priceFor1_6mmLE));
+    settings.setValue("values/priceSheet30mm", getDoubleValue(ui->priceFor3_0mmLE));
+    settings.setValue("values/profitMargin", getDoubleValue(ui->profitMarginLE));
+    settings.setValue("values/priceOneEndClosed", getDoubleValue(ui->priceOneEndCloseLE));
+    settings.setValue("values/priceBothEndsClosed", getDoubleValue(ui->priceBothEndsClosedLE));
 }
 
 /**
