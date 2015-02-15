@@ -27,7 +27,8 @@ private:
     void loadValuesInGui();
 
     void saveValues();
-    double checkLineEdit(QLineEdit *lineEdit);
+    double getDoubleValue(QLineEdit *lineEdit);
+    void setDoubleValue(QLineEdit *le, QString name);
 };
 
 #endif // PREFDIALOG_H

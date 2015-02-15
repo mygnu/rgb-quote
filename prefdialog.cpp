@@ -33,41 +33,48 @@ void PrefDialog::loadValuesInGui()
     else
         settings.setValue("values/orderNumber", 10000);
 
+    setDoubleValue(ui->kgFor0_6mmLE, "values/thick06mmKG");
+    setDoubleValue(ui->kgFor1_6mmLE, "values/thick16mmKG");
+    setDoubleValue(ui->kgFor3_0mmLE, "values/thick30mmKG");
+    setDoubleValue(ui->flangesChargeLE, "values/flangesCharge");
+    setDoubleValue(ui->galvaniseChargeLE, "values/galvPKG");
 
-    if(settings.contains("values/thick06mmKG"))
-    {
-        ui->kgFor0_6mmLE->setText(settings.value("values/thick06mmKG").toString());
-    }
+    setDoubleValue(ui->sprayPaintChargeLE, "values/sprayPaintPMS");
+    setDoubleValue(ui->powderCoteChargeLE, "values/powderCotePMS");
+    setDoubleValue(ui->priceFor0_6mmLE, "values/priceSheet06mm");
+    setDoubleValue(ui->priceFor1_6mmLE, "values/priceSheet16mm");
+    setDoubleValue(ui->priceFor3_0mmLE, "values/priceSheet30mm");
+    setDoubleValue(ui->profitMarginLE, "values/profitMargin");
+    setDoubleValue(ui->priceOneEndCloseLE, "values/priceOneEndClosed");
+    setDoubleValue(ui->priceBothEndsClosedLE, "values/priceBothEndsClosed");
 
-    if(settings.contains("values/thick16mmKG"))
-    {
-        ui->kgFor1_6mmLE->setText(settings.value("values/thick16mmKG").toString());
-    }
-
-    if(settings.contains("values/thick30mmKG"))
-    {
-        ui->kgFor3_0mmLE->setText(settings.value("values/thick30mmKG").toString());
-    }
 }
 
 void PrefDialog::onAccept()
 {
-
     saveValues();
     values->load();
-
-    qDebug() << "on Accept" << values->thick0_6mmKG;
+    qDebug() << values->thick0_6mmKG << values->thick1_6mmKG;
 }
 
 void PrefDialog::saveValues()
 {
     QSettings &settings = values->settings;
-    settings.setValue("values/thick06mmKG", checkLineEdit(ui->kgFor0_6mmLE));
-    settings.setValue("values/thick16mmKG", checkLineEdit(ui->kgFor1_6mmLE));
-    settings.setValue("values/thick30mmKG", checkLineEdit(ui->kgFor3_0mmLE));
+    settings.setValue("this/edited", true);
+    settings.setValue("values/thick06mmKG", getDoubleValue(ui->kgFor0_6mmLE));
+    settings.setValue("values/thick16mmKG", getDoubleValue(ui->kgFor1_6mmLE));
+    settings.setValue("values/thick30mmKG", getDoubleValue(ui->kgFor3_0mmLE));
+    settings.setValue("values/flangesCharge", getDoubleValue(ui->flangesChargeLE));
+    settings.setValue("values/galvPKG", getDoubleValue(ui->galvaniseChargeLE));
+
 }
 
-double PrefDialog::checkLineEdit(QLineEdit *lineEdit)
+/**
+ * return value from line edit if it has any
+ * or return 1.0
+ *
+ */
+double PrefDialog::getDoubleValue(QLineEdit *lineEdit)
 {
     if(lineEdit->text().isEmpty())
     {
@@ -76,3 +83,12 @@ double PrefDialog::checkLineEdit(QLineEdit *lineEdit)
     else
         return lineEdit->text().toDouble();
 }
+
+void PrefDialog::setDoubleValue(QLineEdit *le, QString name)
+{
+    if(values->settings.contains(name))
+        le->setText(values->settings.value(name).toString());
+    else
+        le->setPlaceholderText("Set Value");
+}
+
