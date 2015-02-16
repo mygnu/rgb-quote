@@ -36,7 +36,7 @@ private:
 
     void createMenus();
     PrefDialog *pref = nullptr;
-    const QVector<QString> comboItems{"None Selected", "Cable Cover", "Item Two"};
+    const QVector<QString> comboItems = QVector<QString> {"None Selected", "Cable Cover", "Item Two"};
 };
 
 #endif // MAINWINDOW_H

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QString>
+#include <QVector>
 
 
 
@@ -27,7 +28,7 @@ public slots:
 
 private:
     Ui::CableCover *ui;
-    const QVector<QString> designItems{"Open Ends", "One End Closed", "Both Ends Closed"};
+    QVector<QString> designItems = QVector<QString>{"Open Ends", "One End Closed", "Both Ends Closed"};
 
 
     void setupMenus();
