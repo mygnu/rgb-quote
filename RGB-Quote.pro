@@ -12,8 +12,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = RGB-Quote
 TEMPLATE = app
 
-win32
-{
+win32 {
     INCLUDEPATH += C:\Users\mygnu\Documents\GitHub\PDFWriter\Headers\FreeType
     INCLUDEPATH += C:\Users\mygnu\Documents\GitHub\PDFWriter\Headers\LibTiff
     INCLUDEPATH += C:\Users\mygnu\Documents\GitHub\PDFWriter\Headers\ZLib
@@ -23,7 +22,6 @@ win32
     LIBS += -LC:\Users\mygnu\Documents\GitHub\PDFWriter\Binaries\x64\Release -llibTiff
     LIBS += -LC:\Users\mygnu\Documents\GitHub\PDFWriter\Binaries\x64\Release -lpdfwriter
     LIBS += -LC:\Users\mygnu\Documents\GitHub\PDFWriter\Binaries\x64\Release -lzlib
-
 }
 
 

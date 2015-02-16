@@ -38,7 +38,10 @@ private:
     void createMenus();
     PrefDialog *pref = nullptr;
     const QVector<QString> comboItems = QVector<QString> {"None Selected", "Cable Cover", "Item Two"};
+
+#ifdef Q_OS_WIN32
     PdfGenerator gen;
+#endif // Q_OS_WIN32
 };
 
 #endif // MAINWINDOW_H
