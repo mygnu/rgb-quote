@@ -7,6 +7,7 @@
 
 #include "prefdialog.h"
 #include "cablecover.h"
+#include "pdfgenerator.h"
 
 namespace Ui {
 class MainWindow;
@@ -37,6 +38,7 @@ private:
     void createMenus();
     PrefDialog *pref = nullptr;
     const QVector<QString> comboItems = QVector<QString> {"None Selected", "Cable Cover", "Item Two"};
+    PdfGenerator gen;
 };
 
 #endif // MAINWINDOW_H
