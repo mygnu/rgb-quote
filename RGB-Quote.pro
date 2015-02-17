@@ -13,15 +13,18 @@ TARGET = RGB-Quote
 TEMPLATE = app
 
 win32 {
-    INCLUDEPATH += C:\Users\mygnu\Documents\GitHub\PDFWriter\Headers\FreeType
-    INCLUDEPATH += C:\Users\mygnu\Documents\GitHub\PDFWriter\Headers\LibTiff
-    INCLUDEPATH += C:\Users\mygnu\Documents\GitHub\PDFWriter\Headers\ZLib
-    INCLUDEPATH += C:\Users\mygnu\Documents\GitHub\PDFWriter\Headers\PDFWriter
+    INCLUDEPATH += "$$PWD/PDFWriter/Headers/FreeType"
+    INCLUDEPATH += "$$PWD/PDFWriter/Headers/LibTiff"
+    INCLUDEPATH += "$$PWD/PDFWriter/Headers/LibJpeg"
+    INCLUDEPATH += "$$PWD/PDFWriter/Headers/ZLib"
+    INCLUDEPATH += "$$PWD/PDFWriter/Headers/PDFWriter"
 
-    LIBS += -LC:\Users\mygnu\Documents\GitHub\PDFWriter\Binaries\x64\Release -lFreeType
-    LIBS += -LC:\Users\mygnu\Documents\GitHub\PDFWriter\Binaries\x64\Release -llibTiff
-    LIBS += -LC:\Users\mygnu\Documents\GitHub\PDFWriter\Binaries\x64\Release -lpdfwriter
-    LIBS += -LC:\Users\mygnu\Documents\GitHub\PDFWriter\Binaries\x64\Release -lzlib
+    LIBS += -L"$$PWD/PDFWriter/Binaries" -lFreeType
+    LIBS += -L"$$PWD/PDFWriter/Binaries" -llibTiff
+    LIBS += -L"$$PWD/PDFWriter/Binaries" -lzlib
+    LIBS += -L"$$PWD/PDFWriter/Binaries" -lpdfwriter
+    LIBS += -L"$$PWD/PDFWriter/Binaries" -lLibJpeg
+    CONFIG += static
 }
 
 
