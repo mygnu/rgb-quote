@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include <QVector>
+#include "values.h"
 
 
 
@@ -22,6 +23,7 @@ public:
 
     double designVal();
     double flasgesVal();
+    void setValues(Values *val);
 
 public slots:
     void calculate();
@@ -30,7 +32,7 @@ private:
     Ui::CableCover *ui;
     QVector<QString> designItems = QVector<QString>{"Open Ends", "One End Closed", "Both Ends Closed"};
 
-
+    Values *values;
     void setupMenus();
     void connectSignals();
 };

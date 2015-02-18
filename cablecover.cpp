@@ -34,6 +34,11 @@ double CableCover::designVal()
     return 0.0;
 }
 
+void CableCover::setValues(Values *val)
+{
+    this->values = val;
+}
+
 void CableCover::connectSignals()
 {
 
@@ -41,5 +46,5 @@ void CableCover::connectSignals()
 
 void CableCover::calculate()
 {
-    ui->lableResult->setText(ui->fixingFlangeLineEdit->text());
+        ui->lableResult->setText(ui->fixingFlangeLineEdit->text());
 }

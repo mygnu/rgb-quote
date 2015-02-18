@@ -36,11 +36,10 @@ void MainWindow::createMenus()
 
 void MainWindow::selectionMade(const int itemNumber)
 {
-    qDebug() << "works" << itemNumber;
     if(itemNumber == 1)
     {
         cableCover1 = new CableCover(this);
-
+        cableCover1->setValues(&values);
         QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
          ui->scrollArea->setWidget(cableCover1);
         ui->Item_label->setText(cableCover1->name);
