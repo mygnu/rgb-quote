@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QLineEdit>
+#include <QDoubleSpinBox>
 
 #include "values.h"
 
@@ -29,6 +30,7 @@ private:
     void saveValues();
     double getDoubleValue(QLineEdit *lineEdit);
     void setDoubleValue(QLineEdit *le, QString name);
+    void setDoubleValue(QDoubleSpinBox *sb, QString name);
 };
 
 #endif // PREFDIALOG_H

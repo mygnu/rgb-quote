@@ -35,20 +35,20 @@ void PrefDialog::loadValuesInGui()
     else
         settings.setValue("values/orderNumber", 10000);
 
-    setDoubleValue(ui->kgFor0_6mmLE, "values/thick06mmKG");
-    setDoubleValue(ui->kgFor1_6mmLE, "values/thick16mmKG");
-    setDoubleValue(ui->kgFor3_0mmLE, "values/thick30mmKG");
-    setDoubleValue(ui->flangesChargeLE, "values/flangesCharge");
-    setDoubleValue(ui->galvaniseChargeLE, "values/galvPKG");
+    setDoubleValue(ui->kgFor0_6mmSB, "values/thick06mmKG");
+    setDoubleValue(ui->kgFor1_6mmSB, "values/thick16mmKG");
+    setDoubleValue(ui->kgFor3_0mmSB, "values/thick30mmKG");
+    setDoubleValue(ui->flangesChargeSB, "values/flangesCharge");
+    setDoubleValue(ui->galvaniseChargeSB, "values/galvPKG");
 
-    setDoubleValue(ui->sprayPaintChargeLE, "values/sprayPaintPMS");
-    setDoubleValue(ui->powderCoteChargeLE, "values/powderCotePMS");
+    setDoubleValue(ui->sprayPaintChargeSB, "values/sprayPaintPMS");
+    setDoubleValue(ui->powderCoteChargeSB, "values/powderCotePMS");
     setDoubleValue(ui->priceFor0_6mmLE, "values/priceSheet06mm");
     setDoubleValue(ui->priceFor1_6mmLE, "values/priceSheet16mm");
     setDoubleValue(ui->priceFor3_0mmLE, "values/priceSheet30mm");
     setDoubleValue(ui->profitMarginLE, "values/profitMargin");
-    setDoubleValue(ui->priceOneEndCloseLE, "values/priceOneEndClosed");
-    setDoubleValue(ui->priceBothEndsClosedLE, "values/priceBothEndsClosed");
+    setDoubleValue(ui->priceOneEndCloseSB, "values/priceOneEndClosed");
+    setDoubleValue(ui->priceBothEndsClosedSB, "values/priceBothEndsClosed");
 
 }
 
@@ -64,19 +64,19 @@ void PrefDialog::saveValues()
 {
     QSettings &settings = values->settings;
     settings.setValue("this/edited", true);
-    settings.setValue("values/thick06mmKG", getDoubleValue(ui->kgFor0_6mmLE));
-    settings.setValue("values/thick16mmKG", getDoubleValue(ui->kgFor1_6mmLE));
-    settings.setValue("values/thick30mmKG", getDoubleValue(ui->kgFor3_0mmLE));
-    settings.setValue("values/flangesCharge", getDoubleValue(ui->flangesChargeLE));
-    settings.setValue("values/galvPKG", getDoubleValue(ui->galvaniseChargeLE));
-    settings.setValue("values/sprayPaintPMS", getDoubleValue(ui->sprayPaintChargeLE));
-    settings.setValue("values/powderCotePMS", getDoubleValue(ui->powderCoteChargeLE));
+    settings.setValue("values/thick06mmKG", ui->kgFor0_6mmSB->value());
+    settings.setValue("values/thick16mmKG", ui->kgFor1_6mmSB->value());
+    settings.setValue("values/thick30mmKG", ui->kgFor3_0mmSB->value());
+    settings.setValue("values/flangesCharge", ui->flangesChargeSB->value());
+    settings.setValue("values/galvPKG", ui->galvaniseChargeSB->value());
+    settings.setValue("values/sprayPaintPMS", ui->sprayPaintChargeSB->value());
+    settings.setValue("values/powderCotePMS", ui->powderCoteChargeSB->value());
     settings.setValue("values/priceSheet06mm", getDoubleValue(ui->priceFor0_6mmLE));
     settings.setValue("values/priceSheet16mm", getDoubleValue(ui->priceFor1_6mmLE));
     settings.setValue("values/priceSheet30mm", getDoubleValue(ui->priceFor3_0mmLE));
     settings.setValue("values/profitMargin", getDoubleValue(ui->profitMarginLE));
-    settings.setValue("values/priceOneEndClosed", getDoubleValue(ui->priceOneEndCloseLE));
-    settings.setValue("values/priceBothEndsClosed", getDoubleValue(ui->priceBothEndsClosedLE));
+    settings.setValue("values/priceOneEndClosed", ui->priceOneEndCloseSB->value());
+    settings.setValue("values/priceBothEndsClosed", ui->priceBothEndsClosedSB->value());
 }
 
 /**
@@ -100,4 +100,10 @@ void PrefDialog::setDoubleValue(QLineEdit *le, QString name)
         le->setText(values->settings.value(name).toString());
     else
         le->setPlaceholderText("Set Value");
+}
+
+void PrefDialog::setDoubleValue(QDoubleSpinBox *sb, QString name)
+{
+    if(values->settings.contains(name))
+        sb->setValue(values->settings.value(name).toDouble());
 }
