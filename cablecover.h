@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QString>
 #include <QVector>
+#include <QLineEdit>
 #include "values.h"
 
 
@@ -20,19 +21,26 @@ public:
     const QString name{"Cable Cover"};
     explicit CableCover(QWidget *parent = 0);
     ~CableCover();
-
-    double designVal();
-    double flasgesVal();
-    void setValues(Values *val);
+    double getResult();
+    void setValues(const Values *val);
 
 public slots:
     void calculate();
 
 private:
     Ui::CableCover *ui;
-    QVector<QString> designItems = QVector<QString>{"Open Ends", "One End Closed", "Both Ends Closed"};
+    QVector<QString> flangesItems = QVector<QString>{"Yes", "No"};
+    QVector<QString> materialItems = QVector<QString>{"Galvabond", "Zink Anneal", "Laser Plate", "Stainless Steel"};
+    QVector<QString> thicknessItems = QVector<QString>{"0.6 MM", "1.6 MM", "3.0 MM"};
 
-    Values *values;
+    QVector<QString> designItems = QVector<QString>{"Open Ends", "One End Closed", "Both Ends Closed"};
+    QVector<QString> fixingholeItems = QVector<QString>{"Yes", "No"};
+    QVector<QString> finishesItems = QVector<QString>{"None", "Galvanising", "Power Cote", "Spray Paint"};
+
+    QLineEdit *customThickness;
+
+    double result{-1};
+    const Values  *values;
     void setupMenus();
     void connectSignals();
 };

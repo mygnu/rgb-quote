@@ -30,7 +30,6 @@ void Values::load()
         profitMargin = settings.value("values/profitMargin").toDouble();
         oneEndClosed = settings.value("values/priceOneEndClosed").toDouble();
         bothEndsClosed = settings.value("values/priceBothEndsClosed").toDouble();
-
     }
 }
 

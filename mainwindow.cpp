@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     createMenus();
+    values.load();
 }
 
 MainWindow::~MainWindow()
@@ -30,21 +31,32 @@ void MainWindow::createMenus()
     for(auto item : comboItems)
         ui->comboBox->addItem(item);
 
-        connect(ui->comboBox, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(selectionMade(int)));
+        connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)),
+            this, SLOT(selectionMade(QString)));
 }
 
-void MainWindow::selectionMade(const int itemNumber)
+void MainWindow::selectionMade(const QString &current)
 {
-    if(itemNumber == 1)
+    if(current == "Cable Cover") // if it is cable cover
     {
-        cableCover1 = new CableCover(this);
-        cableCover1->setValues(&values);
-        QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
-         ui->scrollArea->setWidget(cableCover1);
+        cableCover1 = cableCover1 == nullptr ? new CableCover(this) : cableCover1;
         ui->Item_label->setText(cableCover1->name);
+
+        cableCover1->setValues(&values);
         connect(ui->pushButtonCalculate, SIGNAL(clicked()),
                 cableCover1, SLOT(calculate()));
+
+        ui->scrollArea->setWidget(cableCover1);
+        QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
+    }
+
+    else
+    {
+        if(cableCover1 != nullptr)
+        {
+            delete cableCover1;
+            cableCover1 = nullptr;
+        }
     }
 }
 

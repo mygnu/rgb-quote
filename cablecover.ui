@@ -102,70 +102,52 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_6">
          <item>
-          <widget class="QLineEdit" name="fixingFlangeLineEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
+          <widget class="QDoubleSpinBox" name="fixingFlangeSB">
+           <property name="decimals">
+            <number>1</number>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="frame">
-            <bool>true</bool>
-           </property>
-           <property name="placeholderText">
-            <string>0.00</string>
+           <property name="maximum">
+            <double>10000.000000000000000</double>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="WidthLineEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
+          <widget class="QDoubleSpinBox" name="widthSB">
+           <property name="decimals">
+            <number>1</number>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="placeholderText">
-            <string>0.00</string>
+           <property name="maximum">
+            <double>10000.000000000000000</double>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="DepthLineEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
+          <widget class="QDoubleSpinBox" name="DepthSB">
+           <property name="decimals">
+            <number>1</number>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="placeholderText">
-            <string>0.00</string>
+           <property name="maximum">
+            <double>10000000.000000000000000</double>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="LentgthLineEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
+          <widget class="QDoubleSpinBox" name="lengthSB">
+           <property name="decimals">
+            <number>1</number>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="placeholderText">
-            <string>0.00</string>
+           <property name="maximum">
+            <double>100000.000000000000000</double>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="quantityLineEdit">
-           <property name="inputMethodHints">
-            <set>Qt::ImhDigitsOnly</set>
+          <widget class="QSpinBox" name="quantitySB">
+           <property name="minimum">
+            <number>1</number>
            </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="placeholderText">
-            <string>1</string>
+           <property name="maximum">
+            <number>100000</number>
            </property>
           </widget>
          </item>
@@ -471,12 +453,16 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>fixingFlangeLineEdit</tabstop>
-  <tabstop>WidthLineEdit</tabstop>
-  <tabstop>DepthLineEdit</tabstop>
-  <tabstop>LentgthLineEdit</tabstop>
+  <tabstop>fixingFlangeSB</tabstop>
+  <tabstop>widthSB</tabstop>
+  <tabstop>DepthSB</tabstop>
+  <tabstop>lengthSB</tabstop>
+  <tabstop>quantitySB</tabstop>
+  <tabstop>flangesComboBox</tabstop>
   <tabstop>materialComboBox</tabstop>
   <tabstop>thicknessComboBox</tabstop>
+  <tabstop>designComboBox</tabstop>
+  <tabstop>fixingHolesComboBox</tabstop>
   <tabstop>finishComboBox</tabstop>
  </tabstops>
  <resources/>

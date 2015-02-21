@@ -12,9 +12,11 @@ PrefDialog::PrefDialog(Values &val, QWidget *parent) :
 {
     ui->setupUi(this);
     loadValuesInGui();
+
     connect(ui->buttonBox, SIGNAL(accepted()),
             this, SLOT(onAccept()));
-            QScroller::grabGesture(this, QScroller::TouchGesture);
+
+    QScroller::grabGesture(this, QScroller::TouchGesture);
 }
 
 PrefDialog::~PrefDialog()
@@ -56,7 +58,7 @@ void PrefDialog::onAccept()
 {
     saveValues();
     values->load();
- values->addOrder();
+    values->addOrder();
     qDebug() << values->orderNumber;
 }
 

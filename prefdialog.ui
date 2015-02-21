@@ -17,13 +17,13 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
        <string>Charges</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>170</x>
@@ -52,7 +52,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>290</x>
@@ -157,7 +157,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -502,6 +502,27 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>orderNumberLineEdit</tabstop>
+  <tabstop>priceBothEndsClosedSB</tabstop>
+  <tabstop>priceOneEndCloseSB</tabstop>
+  <tabstop>galvaniseChargeSB</tabstop>
+  <tabstop>sprayPaintChargeSB</tabstop>
+  <tabstop>powderCoteChargeSB</tabstop>
+  <tabstop>priceOpenEndsSB</tabstop>
+  <tabstop>flangesChargeSB</tabstop>
+  <tabstop>galvaniseMinimumSB</tabstop>
+  <tabstop>sprayCoteMinimumSB</tabstop>
+  <tabstop>powderCoteMinimumSB</tabstop>
+  <tabstop>profitMarginLE</tabstop>
+  <tabstop>kgFor0_6mmSB</tabstop>
+  <tabstop>kgFor1_6mmSB</tabstop>
+  <tabstop>kgFor3_0mmSB</tabstop>
+  <tabstop>priceFor0_6mmLE</tabstop>
+  <tabstop>priceFor1_6mmLE</tabstop>
+  <tabstop>priceFor3_0mmLE</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

@@ -1,7 +1,7 @@
-#include "cablecover.h"
-#include "ui_cablecover.h"
 #include <QDebug>
 #include <QScroller>
+#include "cablecover.h"
+#include "ui_cablecover.h"
 
 CableCover::CableCover(QWidget *parent) :
     QWidget(parent),
@@ -10,7 +10,6 @@ CableCover::CableCover(QWidget *parent) :
     ui->setupUi(this);
     setupMenus();
     connectSignals();
-    ui->fixingFlangeLineEdit->setValidator(new QDoubleValidator(0, 1000, 2, this));
     QScroller::grabGesture(this, QScroller::TouchGesture);
 }
 
@@ -19,25 +18,35 @@ CableCover::~CableCover()
     delete ui;
 }
 
+double CableCover::getResult()
+{
+    return result;
+}
+
+void CableCover::setValues(const Values *val)
+{
+    values = val;
+}
+
 void CableCover::setupMenus()
 {
-    double price = 10.0;
-
     for(auto item : designItems)
-        ui->designComboBox->addItem(item, QVariant(price + 5));
+        ui->designComboBox->addItem(item);
+    for(auto item : finishesItems)
+        ui->finishComboBox->addItem(item);
+    for(auto item : flangesItems)
+        ui->flangesComboBox->addItem(item);
+    for(auto item : materialItems)
+        ui->materialComboBox->addItem(item);
+    for(auto item : thicknessItems)
+        ui->thicknessComboBox->addItem(item);
+    for(auto item : fixingholeItems)
+        ui->fixingHolesComboBox->addItem(item);
+
+
     qDebug() << ui->designComboBox->currentData().toDouble();
 }
 
-double CableCover::designVal()
-{
-
-    return 0.0;
-}
-
-void CableCover::setValues(Values *val)
-{
-    this->values = val;
-}
 
 void CableCover::connectSignals()
 {
@@ -46,5 +55,6 @@ void CableCover::connectSignals()
 
 void CableCover::calculate()
 {
-        ui->lableResult->setText(ui->fixingFlangeLineEdit->text());
+
+    //double density = values->weight / (1000 * 1000 * 3);
 }

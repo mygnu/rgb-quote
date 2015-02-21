@@ -5,6 +5,7 @@
 
 class Values
 {
+
 public:
     Values();
     ~Values();
@@ -34,6 +35,7 @@ public:
 
     void load();
     void addOrder();
+
 private:
 
 

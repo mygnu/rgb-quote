@@ -23,10 +23,8 @@ public:
 
 private slots:
     void onPrefClicked();
-    void selectionMade(const int itemNumber);
+    void selectionMade(const QString &current);
     void grabSettings();
-
-
 
 private:
     Values values;
