@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     createMenus();
     values.load();
+    if(values.openAtStartup)
+        onPrefClicked();
 }
 
 MainWindow::~MainWindow()

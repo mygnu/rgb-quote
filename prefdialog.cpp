@@ -17,6 +17,8 @@ PrefDialog::PrefDialog(Values &val, QWidget *parent) :
             this, SLOT(onAccept()));
 
     QScroller::grabGesture(this, QScroller::TouchGesture);
+    setWindowModality(Qt::WindowModal);
+    ui->tabWidget->setCurrentIndex(0);
 }
 
 PrefDialog::~PrefDialog()
@@ -28,7 +30,7 @@ void PrefDialog::loadValuesInGui()
 {
 
     QSettings &settings = values->settings;
-
+    ui->openAtStartup->setChecked(settings.value("this/openAtStartup").toBool());
     if(settings.contains("values/orderNumber"))
     {
         ui->orderNumberLineEdit->setPlaceholderText(settings.value("values/orderNumber").toString());
@@ -45,10 +47,11 @@ void PrefDialog::loadValuesInGui()
 
     setDoubleValue(ui->sprayPaintChargeSB, "values/sprayPaintPMS");
     setDoubleValue(ui->powderCoteChargeSB, "values/powderCotePMS");
-    setDoubleValue(ui->priceFor0_6mmLE, "values/priceSheet06mm");
-    setDoubleValue(ui->priceFor1_6mmLE, "values/priceSheet16mm");
-    setDoubleValue(ui->priceFor3_0mmLE, "values/priceSheet30mm");
-    setDoubleValue(ui->profitMarginLE, "values/profitMargin");
+    setDoubleValue(ui->priceFor0_6mmSB, "values/priceSheet06mm");
+    setDoubleValue(ui->priceFor1_6mmSB, "values/priceSheet16mm");
+    setDoubleValue(ui->priceFor3_0mmSB, "values/priceSheet30mm");
+    setDoubleValue(ui->profitMarginSB, "values/profitMargin");
+    setDoubleValue(ui->priceOpenEndsSB, "value/priceOpenEnds");
     setDoubleValue(ui->priceOneEndCloseSB, "values/priceOneEndClosed");
     setDoubleValue(ui->priceBothEndsClosedSB, "values/priceBothEndsClosed");
 
@@ -59,13 +62,18 @@ void PrefDialog::onAccept()
     saveValues();
     values->load();
     values->addOrder();
-    qDebug() << values->orderNumber;
+    //qDebug() << values->orderNumber;
 }
 
 void PrefDialog::saveValues()
 {
     QSettings &settings = values->settings;
     settings.setValue("this/edited", true);
+    if(ui->openAtStartup->isChecked())
+        settings.setValue("this/openAtStartup", true);
+    else
+        settings.setValue("this/openAtStartup", false);
+
     settings.setValue("values/thick06mmKG", ui->kgFor0_6mmSB->value());
     settings.setValue("values/thick16mmKG", ui->kgFor1_6mmSB->value());
     settings.setValue("values/thick30mmKG", ui->kgFor3_0mmSB->value());
@@ -73,10 +81,11 @@ void PrefDialog::saveValues()
     settings.setValue("values/galvPKG", ui->galvaniseChargeSB->value());
     settings.setValue("values/sprayPaintPMS", ui->sprayPaintChargeSB->value());
     settings.setValue("values/powderCotePMS", ui->powderCoteChargeSB->value());
-    settings.setValue("values/priceSheet06mm", getDoubleValue(ui->priceFor0_6mmLE));
-    settings.setValue("values/priceSheet16mm", getDoubleValue(ui->priceFor1_6mmLE));
-    settings.setValue("values/priceSheet30mm", getDoubleValue(ui->priceFor3_0mmLE));
-    settings.setValue("values/profitMargin", getDoubleValue(ui->profitMarginLE));
+    settings.setValue("values/priceSheet06mm", ui->priceFor0_6mmSB->value());
+    settings.setValue("values/priceSheet16mm", ui->priceFor1_6mmSB->value());
+    settings.setValue("values/priceSheet30mm", ui->priceFor3_0mmSB->value());
+    settings.setValue("values/profitMargin", ui->profitMarginSB->value());
+    settings.setValue("values/priceOpenEnds", ui->priceOpenEndsSB->value());
     settings.setValue("values/priceOneEndClosed", ui->priceOneEndCloseSB->value());
     settings.setValue("values/priceBothEndsClosed", ui->priceBothEndsClosedSB->value());
 }

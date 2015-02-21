@@ -17,7 +17,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -262,6 +262,19 @@
         </item>
        </layout>
       </widget>
+      <widget class="QCheckBox" name="openAtStartup">
+       <property name="geometry">
+        <rect>
+         <x>470</x>
+         <y>20</y>
+         <width>141</width>
+         <height>26</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Open at Stortup</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
@@ -280,20 +293,14 @@
         <string>Profit Margin</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="profitMarginLE">
+      <widget class="QDoubleSpinBox" name="profitMarginSB">
        <property name="geometry">
         <rect>
-         <x>310</x>
-         <y>136</y>
-         <width>146</width>
-         <height>33</height>
+         <x>260</x>
+         <y>100</y>
+         <width>76</width>
+         <height>31</height>
         </rect>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhDigitsOnly</set>
-       </property>
-       <property name="text">
-        <string/>
        </property>
       </widget>
      </widget>
@@ -426,38 +433,6 @@
         <string>Price Sheet 1.6mm</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="priceFor0_6mmLE">
-       <property name="geometry">
-        <rect>
-         <x>350</x>
-         <y>230</y>
-         <width>146</width>
-         <height>33</height>
-        </rect>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhDigitsOnly</set>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="priceFor3_0mmLE">
-       <property name="geometry">
-        <rect>
-         <x>350</x>
-         <y>308</y>
-         <width>146</width>
-         <height>33</height>
-        </rect>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhDigitsOnly</set>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_9">
        <property name="geometry">
         <rect>
@@ -471,20 +446,34 @@
         <string>Price Sheet 0.6mm</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="priceFor1_6mmLE">
+      <widget class="QDoubleSpinBox" name="priceFor0_6mmSB">
        <property name="geometry">
         <rect>
-         <x>350</x>
-         <y>269</y>
-         <width>146</width>
-         <height>33</height>
+         <x>360</x>
+         <y>230</y>
+         <width>76</width>
+         <height>31</height>
         </rect>
        </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhDigitsOnly</set>
+      </widget>
+      <widget class="QDoubleSpinBox" name="priceFor1_6mmSB">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>260</y>
+         <width>76</width>
+         <height>31</height>
+        </rect>
        </property>
-       <property name="text">
-        <string/>
+      </widget>
+      <widget class="QDoubleSpinBox" name="priceFor3_0mmSB">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>290</y>
+         <width>76</width>
+         <height>31</height>
+        </rect>
        </property>
       </widget>
      </widget>
@@ -515,13 +504,9 @@
   <tabstop>galvaniseMinimumSB</tabstop>
   <tabstop>sprayCoteMinimumSB</tabstop>
   <tabstop>powderCoteMinimumSB</tabstop>
-  <tabstop>profitMarginLE</tabstop>
   <tabstop>kgFor0_6mmSB</tabstop>
   <tabstop>kgFor1_6mmSB</tabstop>
   <tabstop>kgFor3_0mmSB</tabstop>
-  <tabstop>priceFor0_6mmLE</tabstop>
-  <tabstop>priceFor1_6mmLE</tabstop>
-  <tabstop>priceFor3_0mmLE</tabstop>
  </tabstops>
  <resources/>
  <connections>

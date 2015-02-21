@@ -32,6 +32,7 @@ public:
     double priceSheet3_0mm{1};
 
     double orderNumber{1};
+    bool openAtStartup{true};
 
     void load();
     void addOrder();

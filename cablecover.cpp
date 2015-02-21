@@ -55,6 +55,14 @@ void CableCover::connectSignals()
 
 void CableCover::calculate()
 {
+    double labourCost;
+    if(ui->designComboBox->currentText() == "Open Ends")
+        labourCost = values->openEnds;
+    else if(ui->designComboBox->currentText() == "One End Closed")
+        labourCost = values->oneEndClosed;
+    else if(ui->designComboBox->currentText() == "Both Ends Closed")
+        labourCost = values->bothEndsClosed;
+    qDebug() << labourCost;
 
     //double density = values->weight / (1000 * 1000 * 3);
 }
