@@ -47,30 +47,23 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_5">
          <item>
-          <widget class="QLabel" name="label_9">
-           <property name="text">
-            <string>Fixing Flange (mm) A</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QLabel" name="label_10">
            <property name="text">
-            <string>Width Inenal (mm) B</string>
+            <string>Width Inenal (mm)</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="label_11">
            <property name="text">
-            <string>Depth Internal (mm) C</string>
+            <string>Depth Internal (mm)</string>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QLabel" name="label_12">
            <property name="text">
-            <string>Length Overall (mm) D</string>
+            <string>Length Overall (mm)</string>
            </property>
           </widget>
          </item>
@@ -101,16 +94,6 @@
        </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_6">
-         <item>
-          <widget class="QDoubleSpinBox" name="fixingFlangeSB">
-           <property name="decimals">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <double>10000.000000000000000</double>
-           </property>
-          </widget>
-         </item>
          <item>
           <widget class="QDoubleSpinBox" name="widthSB">
            <property name="decimals">
@@ -203,9 +186,9 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <item>
-          <widget class="QLabel" name="label_7">
+          <widget class="QLabel" name="label_9">
            <property name="text">
-            <string>Flanges</string>
+            <string>Fixing Flange </string>
            </property>
           </widget>
          </item>
@@ -247,7 +230,14 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QComboBox" name="flangesComboBox"/>
+          <widget class="QDoubleSpinBox" name="fixingFlangeSB">
+           <property name="decimals">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <double>10000.000000000000000</double>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QComboBox" name="materialComboBox">
@@ -453,12 +443,11 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>fixingFlangeSB</tabstop>
   <tabstop>widthSB</tabstop>
   <tabstop>DepthSB</tabstop>
   <tabstop>lengthSB</tabstop>
   <tabstop>quantitySB</tabstop>
-  <tabstop>flangesComboBox</tabstop>
+  <tabstop>fixingFlangeSB</tabstop>
   <tabstop>materialComboBox</tabstop>
   <tabstop>thicknessComboBox</tabstop>
   <tabstop>designComboBox</tabstop>

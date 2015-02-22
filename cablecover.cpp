@@ -34,17 +34,12 @@ void CableCover::setupMenus()
         ui->designComboBox->addItem(item);
     for(auto item : finishesItems)
         ui->finishComboBox->addItem(item);
-    for(auto item : flangesItems)
-        ui->flangesComboBox->addItem(item);
     for(auto item : materialItems)
         ui->materialComboBox->addItem(item);
     for(auto item : thicknessItems)
         ui->thicknessComboBox->addItem(item);
     for(auto item : fixingholeItems)
         ui->fixingHolesComboBox->addItem(item);
-
-
-    qDebug() << ui->designComboBox->currentData().toDouble();
 }
 
 
@@ -62,7 +57,50 @@ void CableCover::calculate()
         labourCost = values->oneEndClosed;
     else if(ui->designComboBox->currentText() == "Both Ends Closed")
         labourCost = values->bothEndsClosed;
-    qDebug() << labourCost;
+    // if flanges are not required remove $5 from the labour cost
+    if(ui->fixingFlangeSB->value() <= 0)
+        labourCost -= 5;
+// Area = (internal width + (2*depth) + (2*flanges) ) * Length
+    double area = (ui->widthSB->value() + (ui->DepthSB->value() * 2)
+                   + (ui->fixingFlangeSB->value() * 2)) * ui->lengthSB->value();
+
+//    IF Area > 2400 ,  then
+//    labour cost = labour cost + labour cost * increase / 100             (default increase is 50)
+
+    if(area > 2400)
+    {
+        labourCost += labourCost * 50 / 100;
+    }
+    double thickness;
+    if(ui->thicknessComboBox->currentText() == "0.6 MM")
+        thickness = 0.6;
+    else if(ui->thicknessComboBox->currentText() == "1.6 MM")
+        thickness = 1.6;
+    else
+        thickness = 3.00;
+
+    double density = 0.00761333; // gm/mm cube
+
+    double weight = area * thickness * density; // grams
+
+//    IF finishing chosen = Galvanising Then
+//        Finishting_cost = weight *(Galvanise finishing)
+//        IF Finishing_cost < 2.0
+//            Finishing_cost == 2.0
+    double finishingCost = 0;
+    if(ui->finishComboBox->currentText() == "Galvanising")
+    {
+        finishingCost = weight * values->galvanisingPKG * 1000;
+    }
+    else if(ui->finishComboBox->currentText() == "Power Cote")
+    {
+        finishingCost = area * values->powderCotePMS * 1000;
+    }
+    else if(ui->finishComboBox->currentText() == "Spray Paint")
+    {
+        finishingCost = area * values->sprayPanitPMS * 1000;
+    }
+    qDebug() << labourCost << "area:" << area << "weight" << weight;
 
     //double density = values->weight / (1000 * 1000 * 3);
 }

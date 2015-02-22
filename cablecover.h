@@ -29,7 +29,6 @@ public slots:
 
 private:
     Ui::CableCover *ui;
-    QVector<QString> flangesItems = QVector<QString>{"Yes", "No"};
     QVector<QString> materialItems = QVector<QString>{"Galvabond", "Zink Anneal", "Laser Plate", "Stainless Steel"};
     QVector<QString> thicknessItems = QVector<QString>{"0.6 MM", "1.6 MM", "3.0 MM"};
 
