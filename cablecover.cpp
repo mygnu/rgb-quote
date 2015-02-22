@@ -100,7 +100,8 @@ void CableCover::calculate()
     {
         finishingCost = area * values->sprayPanitPMS * 1000;
     }
-    qDebug() << labourCost << "area:" << area << "weight" << weight;
+    qDebug() << labourCost << "area:" << area << "weight" << weight
+             << "\nfinishing cost" << finishingCost;
 
     //double density = values->weight / (1000 * 1000 * 3);
 }
