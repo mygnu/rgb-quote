@@ -86,8 +86,8 @@ void MainWindow::onPrefClicked()
 void MainWindow::onCreatePdfClicked()
 {
 #ifdef Q_OS_WIN32
-   QString filename = QFileDialog::getSaveFileName(this, tr("Save File"),
-                                                   tr("Images (*.png *.xpm *.jpg)"));
+   QString filename = QFileDialog::getSaveFileName(this, tr("Save PDF File"),
+                                                   tr("PDF Files (*.pdf *.PDF)"));
    if(!filename.isEmpty())
    {
        pdfgen = new PdfGenerator(filename);
