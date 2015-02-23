@@ -4,6 +4,7 @@
 
 #ifdef Q_OS_WIN32
 // standard library includes
+#include <QStandardPaths>
 #include <iostream>
 #include <string>
 using namespace std;

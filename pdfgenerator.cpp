@@ -6,56 +6,56 @@
 
 PdfGenerator::PdfGenerator()
 {
+    string documents = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).at(0).toStdString();
+
     PDFWriter pdfWriter;
     EStatusCode status;
     do
     {
-    status = pdfWriter.StartPDF("C:\\Users\\mygnu\\Documents\\GitHub\\rgb-quote\\build\\RGB-Quote-Desktop_Qt_5_4_0_MSVC2013_64bit-Debug\\debug\\BasicImageAndText.pdf",ePDFVersion13);
-    if(status != eSuccess)
-    break;
-    // Create a new page
-    PDFPage* pdfPage = new PDFPage();
-    pdfPage->SetMediaBox(PDFRectangle(0,0,595,842));
-    // Create an image object from image
-    PDFFormXObject* image = pdfWriter.CreateFormXObjectFromJPGFile("C:\\Users\\mygnu\\Documents\\GitHub\\rgb-quote\\build\\RGB-Quote-Desktop_Qt_5_4_0_MSVC2013_64bit-Debug\\debug\\otherStage.JPG");
-    if(!image)
-    {
-        status = eFailure;
+        status = pdfWriter.StartPDF(documents + "/out.PDF",ePDFVersion13);
+        if(status != eSuccess)
+            break;
+        // creating XObjects for all pages of XObjectContent.pdf (2 pages)
+        EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(documents + "/CableCover.PDF",
+                                                                                    PDFPageRange(),ePDFPageBoxMediaBox);
+        if(result.first != eSuccess)
+        {
+            status = eFailure;
+            break;
+        }
+        // determine page IDs
+        ObjectIDTypeList::iterator it = result.second.begin();
+        ObjectIDType firstPageID = *it;
 
-        break;
-    }
-    // Create a content context for the page
-    PageContentContext* pageContentContext = pdfWriter.StartPageContentContext(pdfPage);
-    // Place the image in the center of the page
-    pageContentContext->q();
-    pageContentContext->cm(0.4,0,0,0.4,57.5,241);
-    pageContentContext->Do(pdfPage->GetResourcesDictionary().AddFormXObjectMapping(image->GetObjectID()));
-    pageContentContext->Q();
-    // Image object can be deleted right after i was used
-    delete image;
-    // Create a title text over the image
-   PDFUsedFont* arialTTF = pdfWriter.GetFontForFile("C:\\Users\\mygnu\\Documents\\GitHub\\rgb-quote\\build\\RGB-Quote-Desktop_Qt_5_4_0_MSVC2013_64bit-Debug\\debug\\arial.ttf");
-    if(!arialTTF)
-    {
-    status = eFailure;
-    qDebug() << "cant' open this";
-    break;
-    }
-    pageContentContext->BT();
-    pageContentContext->k(0,0,0,1);
-    pageContentContext->Tf(arialTTF,20);
-    pageContentContext->Tm(1,0,0,1,90,610);
-    pageContentContext->Tj("San Antonio Pass, Cordillera Huayhuash, Peru");
-    pageContentContext->ET();
-    // End content context, and write the page
-    status = pdfWriter.EndPageContentContext(pageContentContext);
-    if(status != eSuccess)
-    break;
-    status = pdfWriter.WritePageAndRelease(pdfPage);
-    if(status != eSuccess)
-    break;
-    status = pdfWriter.EndPDF();
+        // create a page using both xobjects
+        PDFPage* page = new PDFPage();
+        page->SetMediaBox(PDFRectangle(0,0,595,842));
+        PageContentContext* contentContext = pdfWriter.StartPageContentContext(page);
+
+        // place the first page in the top left corner of the document
+        contentContext->q();
+        contentContext->cm(1,0,0,1,0,0);
+        contentContext->Do(page->GetResourcesDictionary().AddFormXObjectMapping(firstPageID));
+        contentContext->Q();
+
+        // draw a rectangle around the page bounds
+//        contentContext->G(0);
+//        contentContext->w(1);
+//        contentContext->re(0,421,297.5,421);
+//        contentContext->S();
+
+        status = pdfWriter.EndPageContentContext(contentContext);
+        if(status != eSuccess)
+            break;
+        status = pdfWriter.WritePageAndRelease(page);
+        if(status != eSuccess)
+            break;
+
+        status = pdfWriter.EndPDF();
+        if(status != eSuccess)
+            break;
     }while(false);
+
 
     if(eSuccess == status)
     cout<<"Succeeded in creating PDF file\n";
