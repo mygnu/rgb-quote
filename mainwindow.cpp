@@ -3,6 +3,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QScroller>
+#include <QFileDialog>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -18,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-
+    delete pdfgen;
     delete ui;
 }
 
@@ -33,8 +34,10 @@ void MainWindow::createMenus()
     for(auto item : comboItems)
         ui->comboBox->addItem(item);
 
-        connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)),
+    connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)),
             this, SLOT(selectionMade(QString)));
+    connect(ui->pushButtonPrintPdf, SIGNAL(clicked()),
+            this, SLOT(onCreatePdfClicked()));
 }
 
 void MainWindow::selectionMade(const QString &current)
@@ -73,4 +76,14 @@ void MainWindow::onPrefClicked()
     pref = new PrefDialog(values, this);
     pref->setAttribute(Qt::WA_DeleteOnClose);
     pref->show();
+}
+
+void MainWindow::onCreatePdfClicked()
+{
+   QString filename = QFileDialog::getSaveFileName();
+   if(!filename.isEmpty())
+   {
+       pdfgen = new PdfGenerator(filename);
+   }
+
 }

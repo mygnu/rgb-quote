@@ -46,5 +46,5 @@ FORMS    += mainwindow.ui \
     prefdialog.ui \
     cablecover.ui
 
-DISTFILES +=
+
 

@@ -26,6 +26,7 @@ private slots:
     void selectionMade(const QString &current);
     void grabSettings();
 
+    void onCreatePdfClicked();
 private:
     Values values;
     Ui::MainWindow *ui;
@@ -38,7 +39,7 @@ private:
     const QVector<QString> comboItems = QVector<QString> {"None Selected", "Cable Cover", "Item Two"};
 
 #ifdef Q_OS_WIN32
-    PdfGenerator gen;
+    PdfGenerator *pdfgen{nullptr};
 #endif // Q_OS_WIN32
 };
 

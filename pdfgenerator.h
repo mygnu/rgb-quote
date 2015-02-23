@@ -22,13 +22,29 @@ using namespace PDFHummus;
 static const string scBasePath = "C:\\Users\\mygnu\\Apps\\PDFWriterCMake3_2\\TestMaterials\\images\\";
 static const string scSystemFontsPath = "C:\\Windows\\Fonts\\";
 
+static const QString docDir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).at(0) + "/";
 
 
 class PdfGenerator
 {
 public:
-    PdfGenerator();
+    PdfGenerator(QString outFile = docDir + "out.PDF");
     ~PdfGenerator();
+
+    void setFixingFlange(QString text);
+    void setWidthInternal(QString text);
+
+
+private:
+    PDFWriter pdfWriter;
+    EStatusCode status;
+
+    PageContentContext* contentContext{nullptr};
+    PDFPage* page{nullptr};
+    PDFUsedFont* arialTTF{nullptr};
+
+    bool createContextFromPdf();
+    bool finishAndWrite();
 };
 
 #endif // Q_OS_WIN32
