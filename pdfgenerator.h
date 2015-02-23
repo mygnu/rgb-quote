@@ -33,6 +33,7 @@ public:
 
     void setFixingFlange(QString text);
     void setWidthInternal(QString text);
+    bool finishAndWrite();
 
 
 private:
@@ -44,7 +45,6 @@ private:
     PDFUsedFont* arialTTF{nullptr};
 
     bool createContextFromPdf();
-    bool finishAndWrite();
 };
 
 #endif // Q_OS_WIN32
