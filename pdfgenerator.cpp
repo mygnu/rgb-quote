@@ -12,7 +12,6 @@ PdfGenerator::PdfGenerator(QString outFile)
     createContextFromPdf();
     setFixingFlange("22 mm");
     setWidthInternal("12 mm");
-    finishAndWrite();
 }
 
 PdfGenerator::~PdfGenerator()
