@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include <QScroller>
 #include <QFileDialog>
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,7 +20,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    delete pdfgen;
+#ifdef Q_OS_WIN32
+    if(pdfgen != nullptr)
+        delete pdfgen;
+#endif  //Q_OS_WIN32
+
     delete ui;
 }
 
@@ -80,10 +85,27 @@ void MainWindow::onPrefClicked()
 
 void MainWindow::onCreatePdfClicked()
 {
-   QString filename = QFileDialog::getSaveFileName();
+#ifdef Q_OS_WIN32
+   QString filename = QFileDialog::getSaveFileName(this, tr("Save File"),
+                                                   tr("Images (*.png *.xpm *.jpg)"));
    if(!filename.isEmpty())
    {
        pdfgen = new PdfGenerator(filename);
-   }
 
+       pdfgen->finishAndWrite();
+       delete pdfgen;
+   }
+   else
+   {
+       QMessageBox msgBox;
+       msgBox.setText("File Name can not be empty");
+       msgBox.exec();
+   }
+#endif  //Q_OS_WIN32
+
+#ifdef Q_OS_LINUX
+   QMessageBox msgBox;
+    msgBox.setText("This only works in Windows for now");
+    msgBox.exec();
+#endif
 }
