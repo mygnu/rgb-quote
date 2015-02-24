@@ -27,16 +27,10 @@ void PdfGenerator::putText(const QString &text, int xAxis, int yAxis)
 bool PdfGenerator::createContextFromPdf(const QString &oldPdfFile)
 {
     // creating XObjects for all pages of XObjectContent.pdf (2 pages)
-<<<<<<< HEAD
+
     EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(oldPdfFile.toStdString(),
                                                                                     PDFPageRange(),ePDFPageBoxMediaBox);
-||||||| merged common ancestors
-    EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(docDir.toStdString(),
-                                                                                PDFPageRange(),ePDFPageBoxMediaBox);
-=======
-    EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(oldPdfFile.toStdString(),
-                                                                                PDFPageRange(),ePDFPageBoxMediaBox);
->>>>>>> c6bec78f18c7f49224eca9582a259f2177801243
+
     if(result.first != eSuccess)
     {
         status = eFailure;
