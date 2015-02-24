@@ -20,11 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-#ifdef Q_OS_WIN32
-    if(pdfgen != nullptr)
-        delete pdfgen;
-#endif  //Q_OS_WIN32
-
     delete ui;
 }
 
@@ -47,10 +42,10 @@ void MainWindow::createMenus()
 
 void MainWindow::selectionMade(const QString &current)
 {
-    if(current == "Cable Cover") // if it is cable cover
+    if(current == comboItems.at(1)) // if it is cable cover
     {
-        cableCover1 = cableCover1 == nullptr ? new CableCover(this) : cableCover1;
-        ui->Item_label->setText(cableCover1->name);
+        cableCover1 = cableCover1 == nullptr ? new CableCover(this, comboItems.at(1)) : cableCover1;
+        ui->Item_label->setText(comboItems.at(1));
 
         cableCover1->setValues(&values);
         connect(ui->pushButtonCalculate, SIGNAL(clicked()),
@@ -86,21 +81,24 @@ void MainWindow::onPrefClicked()
 void MainWindow::onCreatePdfClicked()
 {
 #ifdef Q_OS_WIN32
-   QString filename = QFileDialog::getSaveFileName(this, tr("Save PDF File"),
-                                                   tr("PDF Files (*.pdf *.PDF)"));
-   if(!filename.isEmpty())
-   {
-       pdfgen = new PdfGenerator(filename);
+    if(ui->comboBox->currentText() == comboItems.at(1))
+        {
+            QString filename = QFileDialog::getSaveFileName(this, tr("Save PDF File"),"untitled.pdf",
+                                                            tr("PDF Files (*.pdf *.PDF)"));
+            if(!filename.isEmpty())
+            {
+                createPdfCableCover(filename);
+            }
+        }
 
-       pdfgen->finishAndWrite();
-       delete pdfgen;
-   }
-   else
-   {
-       QMessageBox msgBox;
-       msgBox.setText("File Name can not be empty");
-       msgBox.exec();
-   }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Please Select a product befre you can print a pdf");
+        msgBox.exec();
+    }
+
+
 #endif  //Q_OS_WIN32
 
 #ifdef Q_OS_LINUX
@@ -108,4 +106,13 @@ void MainWindow::onCreatePdfClicked()
     msgBox.setText("This only works in Windows for now");
     msgBox.exec();
 #endif
+}
+
+void MainWindow::createPdfCableCover(const QString &filename)
+{
+#ifdef Q_OS_WIN32
+    PdfGenerator pdfgen(filename);
+    pdfgen.setFixingFlange("22 mm");
+    pdfgen.setWidthInternal("12 mm");
+#endif  //Q_OS_WIN32
 }

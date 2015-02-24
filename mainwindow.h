@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QMenu>
-
+#include <QString>
 
 #include "prefdialog.h"
 #include "cablecover.h"
@@ -37,10 +37,7 @@ private:
     void createMenus();
     PrefDialog *pref = nullptr;
     const QVector<QString> comboItems = QVector<QString> {"None Selected", "Cable Cover", "Item Two"};
-
-#ifdef Q_OS_WIN32
-    PdfGenerator *pdfgen{nullptr};
-#endif // Q_OS_WIN32
+    void createPdfCableCover(const QString &filename);
 };
 
 #endif // MAINWINDOW_H

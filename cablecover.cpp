@@ -3,8 +3,9 @@
 #include "cablecover.h"
 #include "ui_cablecover.h"
 
-CableCover::CableCover(QWidget *parent) :
+CableCover::CableCover(QWidget *parent, const QString &n) :
     QWidget(parent),
+    name(n),
     ui(new Ui::CableCover)
 {
     ui->setupUi(this);

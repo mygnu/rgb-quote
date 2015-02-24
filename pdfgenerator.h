@@ -19,22 +19,22 @@ using namespace std;
 // end pdfwriter library includes
 
 using namespace PDFHummus;
-static const string scBasePath = "C:\\Users\\mygnu\\Apps\\PDFWriterCMake3_2\\TestMaterials\\images\\";
-static const string scSystemFontsPath = "C:\\Windows\\Fonts\\";
-
-static const QString docDir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).at(0) + "/";
-
+//static const string scBasePath = "C:\\Users\\mygnu\\Apps\\PDFWriterCMake3_2\\TestMaterials\\images\\";
+//static const string scSystemFontsPath = "C:\\Windows\\Fonts\\";
+static const QString fontPath = QStandardPaths::standardLocations(QStandardPaths::FontsLocation).at(0) + "/arial.ttf";
+static const QString docDir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).at(0) + "/CableCover.pdf";
+static const QString appDir = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation).at(0);
 
 class PdfGenerator
 {
 public:
-    PdfGenerator(QString outFile = docDir + "out.PDF");
+    PdfGenerator(const QString &outFile = docDir);
     ~PdfGenerator();
 
-    void setFixingFlange(QString text);
-    void setWidthInternal(QString text);
-    bool finishAndWrite();
+    void setFixingFlange (const QString &text){ putText(text, 490, 410);}
+    void setWidthInternal(const QString &text){ putText(text, 490, 390);}
 
+    void putText(const QString &text, int xAxis, int yAxis);
 
 private:
     PDFWriter pdfWriter;
@@ -44,6 +44,7 @@ private:
     PDFPage* page{nullptr};
     PDFUsedFont* arialTTF{nullptr};
 
+    bool finishAndWrite();
     bool createContextFromPdf();
 };
 

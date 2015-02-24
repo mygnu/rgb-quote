@@ -5,43 +5,36 @@
 #ifdef Q_OS_WIN32
 
 
-PdfGenerator::PdfGenerator(QString outFile)
+PdfGenerator::PdfGenerator(const QString &outFile)
 {
-
+    qDebug() << fontPath << docDir << appDir;
     status = pdfWriter.StartPDF(outFile.toStdString(),ePDFVersion13);
-    createContextFromPdf();
-    setFixingFlange("22 mm");
-    setWidthInternal("12 mm");
+    if(!createContextFromPdf())
+        return;
+
 }
 
 PdfGenerator::~PdfGenerator()
 {
-    delete page;
-    delete arialTTF;
-    delete contentContext;
+    finishAndWrite();
 }
 
-void PdfGenerator::setFixingFlange(QString text)
+void PdfGenerator::putText(const QString &text, int xAxis, int yAxis)
 {
-    contentContext->Tm(8,0,0,10,490,410);
-    contentContext->Tj(text.toStdString());
-}
-
-void PdfGenerator::setWidthInternal(QString text)
-{
-    contentContext->Tm(8,0,0,10,490,390);
+    contentContext->Tm(8,0,0,10,xAxis,yAxis);
     contentContext->Tj(text.toStdString());
 }
 
 bool PdfGenerator::createContextFromPdf()
 {
     // creating XObjects for all pages of XObjectContent.pdf (2 pages)
-    EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(docDir.toStdString() + "CableCover.pdf",
+    EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(docDir.toStdString(),
                                                                                 PDFPageRange(),ePDFPageBoxMediaBox);
     if(result.first != eSuccess)
     {
         status = eFailure;
-        qDebug() << "failed";
+        qDebug() << "failed to open existing file";
+        return false;
     }
     // determine page IDs
     ObjectIDTypeList::iterator it = result.second.begin();
@@ -57,8 +50,12 @@ bool PdfGenerator::createContextFromPdf()
     contentContext->Do(page->GetResourcesDictionary().AddFormXObjectMapping(firstPageID));
     contentContext->Q();
 
-    arialTTF = pdfWriter.GetFontForFile("C:\\Windows\\fonts\\arial.ttf");
-
+    arialTTF = pdfWriter.GetFontForFile(fontPath.toStdString());
+    if(!arialTTF)
+    {
+        qDebug() << "can't load font";
+        return false;
+    }
     contentContext->k(0,0,0,1); // set color black
 
     contentContext->BT();
@@ -84,10 +81,10 @@ bool PdfGenerator::finishAndWrite()
 
     if(eSuccess == status)
     {
-        cout<<"Succeeded in creating PDF file\n";
+        qDebug() <<"Succeeded in creating PDF file\n";
         return true;
     }
-    cout<<"Failed in creating PDF file\n";
+    qDebug()<<"Failed in creating PDF file\n";
     return false;
 }
 
