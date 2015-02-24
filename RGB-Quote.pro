@@ -35,11 +35,12 @@ SOURCES += main.cpp\
     values.cpp \
     pdfgenerator.cpp
 
-HEADERS  += mainwindow.h \
-    prefdialog.h \
-    cablecover.h \
-    values.h \
-    pdfgenerator.h
+HEADERS  += \
+    cablecover.hh \
+    mainwindow.hh \
+    pdfgenerator.hh \
+    prefdialog.hh \
+    values.hh
 
 
 FORMS    += mainwindow.ui \

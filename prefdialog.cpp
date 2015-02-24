@@ -1,5 +1,5 @@
 #include <QVariant>
-#include "prefdialog.h"
+#include "prefdialog.hh"
 #include "ui_prefdialog.h"
 
 #include <QDebug>

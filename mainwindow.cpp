@@ -1,6 +1,6 @@
 #include <QDebug>
 
-#include "mainwindow.h"
+#include "mainwindow.hh"
 #include "ui_mainwindow.h"
 #include <QScroller>
 #include <QFileDialog>
@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     createMenus();
     values.load();
-    if(values.openAtStartup)
+    if(values.getOpenAtStartup())
         onPrefClicked();
 }
 
@@ -112,6 +112,31 @@ void MainWindow::createPdfCableCover(const QString &filename)
 {
 #ifdef Q_OS_WIN32
     PdfGenerator pdfgen(filename);
+<<<<<<< HEAD
+
+    QString oldfilePath(pdfPath);
+
+    QFile file(pdfPath);
+    if(!file.exists())
+    {
+        oldfilePath = QFileDialog::getOpenFileName(0, QString("Open TEMPLATE PDF File"),QString("CableCover.pdf"), QString("PDF Files (*.pdf *.PDF)"));
+    }
+    pdfgen.createContextFromPdf(oldfilePath);
+
+||||||| merged common ancestors
+=======
+
+    QString oldfilePath(pdfPath);
+
+    QFile file(pdfPath);
+    if(!file.exists())
+    {
+        oldfilePath = QFileDialog::getOpenFileName(0, tr("Open TEMPLATE PDF File"),"TemplateCableCover.pdf",
+                                                   tr("PDF Files (*.pdf *.PDF)"));
+    }
+    pdfgen.createContextFromPdf(oldfilePath);
+
+>>>>>>> c6bec78f18c7f49224eca9582a259f2177801243
     pdfgen.setFixingFlange("22 mm");
     pdfgen.setWidthInternal("12 mm");
 #endif  //Q_OS_WIN32

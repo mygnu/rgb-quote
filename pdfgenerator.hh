@@ -5,7 +5,7 @@
 #ifdef Q_OS_WIN32
 // standard library includes
 #include <QStandardPaths>
-#include <iostream>
+#include <QDir>
 #include <string>
 using namespace std;
 
@@ -22,14 +22,15 @@ using namespace PDFHummus;
 //static const string scBasePath = "C:\\Users\\mygnu\\Apps\\PDFWriterCMake3_2\\TestMaterials\\images\\";
 //static const string scSystemFontsPath = "C:\\Windows\\Fonts\\";
 static const QString fontPath = QStandardPaths::standardLocations(QStandardPaths::FontsLocation).at(0) + "/arial.ttf";
-static const QString docDir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation).at(0) + "/CableCover.pdf";
-static const QString appDir = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation).at(0);
+
+
 
 class PdfGenerator
 {
 public:
-    PdfGenerator(const QString &outFile = docDir);
+    PdfGenerator(const QString &outFile);
     ~PdfGenerator();
+    bool createContextFromPdf(const QString &oldPdfFile);
 
     void setFixingFlange (const QString &text){ putText(text, 490, 410);}
     void setWidthInternal(const QString &text){ putText(text, 490, 390);}
@@ -45,7 +46,6 @@ private:
     PDFUsedFont* arialTTF{nullptr};
 
     bool finishAndWrite();
-    bool createContextFromPdf();
 };
 
 #endif // Q_OS_WIN32

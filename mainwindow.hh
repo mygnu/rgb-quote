@@ -4,14 +4,16 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QString>
+#include <QDir>
 
-#include "prefdialog.h"
-#include "cablecover.h"
-#include "pdfgenerator.h"
+#include "prefdialog.hh"
+#include "cablecover.hh"
+#include "pdfgenerator.hh"
 
 namespace Ui {
 class MainWindow;
 }
+static const QString pdfPath = QDir::currentPath() + "/CableCover.pdf";
 
 class MainWindow : public QMainWindow
 {

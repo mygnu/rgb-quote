@@ -1,6 +1,6 @@
 #include <QDebug>
 #include <QScroller>
-#include "cablecover.h"
+#include "cablecover.hh"
 #include "ui_cablecover.h"
 
 CableCover::CableCover(QWidget *parent, const QString &n) :
@@ -53,11 +53,11 @@ void CableCover::calculate()
 {
     double labourCost;
     if(ui->designComboBox->currentText() == "Open Ends")
-        labourCost = values->openEnds;
+        labourCost = values->getOpenEnds();
     else if(ui->designComboBox->currentText() == "One End Closed")
-        labourCost = values->oneEndClosed;
+        labourCost = values->getOneEndClosed();
     else if(ui->designComboBox->currentText() == "Both Ends Closed")
-        labourCost = values->bothEndsClosed;
+        labourCost = values->getBothEndsClosed();
     // if flanges are not required remove $5 from the labour cost
     if(ui->fixingFlangeSB->value() <= 0)
         labourCost -= 5;
@@ -91,15 +91,15 @@ void CableCover::calculate()
     double finishingCost = 0;
     if(ui->finishComboBox->currentText() == "Galvanising")
     {
-        finishingCost = weight * values->galvanisingPKG * 1000;
+        finishingCost = weight * values->getGalvanisingPKG() * 1000;
     }
     else if(ui->finishComboBox->currentText() == "Power Cote")
     {
-        finishingCost = area * values->powderCotePMS * 1000;
+        finishingCost = area * values->getPowderCotePMS() * 1000;
     }
     else if(ui->finishComboBox->currentText() == "Spray Paint")
     {
-        finishingCost = area * values->sprayPanitPMS * 1000;
+        finishingCost = area * values->getSprayPaintPMS() * 1000;
     }
     qDebug() << labourCost << "area:" << area << "weight" << weight
              << "\nfinishing cost" << finishingCost;
