@@ -1,16 +1,15 @@
 
-#include "pdfgenerator.h"
+#include "pdfgenerator.hh"
 #include <QDebug>
+#include <QFile>
+#include <QFileDialog>
 
 #ifdef Q_OS_WIN32
 
 
 PdfGenerator::PdfGenerator(const QString &outFile)
 {
-    qDebug() << fontPath << docDir << appDir;
     status = pdfWriter.StartPDF(outFile.toStdString(),ePDFVersion13);
-    if(!createContextFromPdf())
-        return;
 
 }
 
@@ -25,10 +24,10 @@ void PdfGenerator::putText(const QString &text, int xAxis, int yAxis)
     contentContext->Tj(text.toStdString());
 }
 
-bool PdfGenerator::createContextFromPdf()
+bool PdfGenerator::createContextFromPdf(const QString &oldPdfFile)
 {
     // creating XObjects for all pages of XObjectContent.pdf (2 pages)
-    EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(docDir.toStdString(),
+    EStatusCodeAndObjectIDTypeList result = pdfWriter.CreateFormXObjectsFromPDF(oldPdfFile.toStdString(),
                                                                                 PDFPageRange(),ePDFPageBoxMediaBox);
     if(result.first != eSuccess)
     {
@@ -36,6 +35,7 @@ bool PdfGenerator::createContextFromPdf()
         qDebug() << "failed to open existing file";
         return false;
     }
+
     // determine page IDs
     ObjectIDTypeList::iterator it = result.second.begin();
     ObjectIDType firstPageID = *it;

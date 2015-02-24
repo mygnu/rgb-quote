@@ -1,4 +1,4 @@
-#include "values.h"
+#include "values.hh"
 
 Values::Values():
     settings(QSettings::IniFormat, QSettings::UserScope, "AppRgbQuote", "config")
