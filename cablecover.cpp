@@ -24,7 +24,7 @@ double CableCover::getResult()
     return result;
 }
 
-void CableCover::setValues(const Values *val)
+void CableCover::setValues(const CCValues *val)
 {
     values = val;
 }

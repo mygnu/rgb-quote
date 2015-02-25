@@ -5,7 +5,7 @@
 #include <QString>
 #include <QVector>
 #include <QLineEdit>
-#include "values.hh"
+#include "cablecovervalues.hh"
 
 
 
@@ -22,7 +22,7 @@ public:
     explicit CableCover(QWidget *parent = 0,const QString &n ="Cable Cover");
     ~CableCover();
     double getResult();
-    void setValues(const Values *val);
+    void setValues(const CCValues *val);
 
 public slots:
     void calculate();
@@ -39,7 +39,7 @@ private:
     QLineEdit *customThickness;
 
     double result{-1};
-    const Values  *values;
+    const CCValues  *values;
     void setupMenus();
     void connectSignals();
 };

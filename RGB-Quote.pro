@@ -32,15 +32,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     prefdialog.cpp \
     cablecover.cpp \
-    values.cpp \
-    pdfgenerator.cpp
+    pdfgenerator.cpp \
+    cablecovervalues.cpp
 
 HEADERS  += \
     cablecover.hh \
     mainwindow.hh \
     pdfgenerator.hh \
     prefdialog.hh \
-    values.hh
+    cablecovervalues.hh
 
 
 FORMS    += mainwindow.ui \

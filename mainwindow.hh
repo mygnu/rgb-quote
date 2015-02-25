@@ -30,14 +30,14 @@ private slots:
 
     void onCreatePdfClicked();
 private:
-    Values values;
+    CCValues values;
     Ui::MainWindow *ui;
     QAction *editPrefAct{nullptr};
     QMenu *editMenu{nullptr};
     CableCover *cableCover1{nullptr};
 
     void createMenus();
-    PrefDialog *pref = nullptr;
+    CCPrefDialog *pref = nullptr;
     const QVector<QString> comboItems = QVector<QString> {"None Selected", "Cable Cover", "Item Two"};
     void createPdfCableCover(const QString &filename);
 };

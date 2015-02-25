@@ -5,7 +5,7 @@
 #include <QDebug>
 #include <QScroller>
 
-PrefDialog::PrefDialog(Values &val, QWidget *parent) :
+CCPrefDialog::CCPrefDialog(CCValues &val, QWidget *parent) :
     QDialog(parent),
     values(&val),
     ui(new Ui::PrefDialog)
@@ -21,12 +21,12 @@ PrefDialog::PrefDialog(Values &val, QWidget *parent) :
     ui->tabWidget->setCurrentIndex(0);
 }
 
-PrefDialog::~PrefDialog()
+CCPrefDialog::~CCPrefDialog()
 {
     delete ui;
 }
 
-void PrefDialog::loadValuesInGui()
+void CCPrefDialog::loadValuesInGui()
 {
 
     QSettings &settings = values->settings;
@@ -57,15 +57,13 @@ void PrefDialog::loadValuesInGui()
 
 }
 
-void PrefDialog::onAccept()
+void CCPrefDialog::onAccept()
 {
     saveValues();
     values->load();
-    values->addOrder();
-    //qDebug() << values->orderNumber;
 }
 
-void PrefDialog::saveValues()
+void CCPrefDialog::saveValues()
 {
     QSettings &settings = values->settings;
     settings.setValue("this/edited", true);
@@ -90,22 +88,9 @@ void PrefDialog::saveValues()
     settings.setValue("values/priceBothEndsClosed", ui->priceBothEndsClosedSB->value());
 }
 
-/**
- * return value from line edit if it has any
- * or return 1.0
- *
- */
-double PrefDialog::getDoubleValue(QLineEdit *lineEdit)
-{
-    if(lineEdit->text().isEmpty())
-    {
-        return 1.0;
-    }
-    else
-        return lineEdit->text().toDouble();
-}
 
-void PrefDialog::setDoubleValue(QLineEdit *le, QString name)
+
+void CCPrefDialog::setDoubleValue(QLineEdit *le, QString name)
 {
     if(values->settings.contains(name))
         le->setText(values->settings.value(name).toString());
@@ -113,7 +98,7 @@ void PrefDialog::setDoubleValue(QLineEdit *le, QString name)
         le->setPlaceholderText("Set Value");
 }
 
-void PrefDialog::setDoubleValue(QDoubleSpinBox *sb, QString name)
+void CCPrefDialog::setDoubleValue(QDoubleSpinBox *sb, QString name)
 {
     if(values->settings.contains(name))
         sb->setValue(values->settings.value(name).toDouble());

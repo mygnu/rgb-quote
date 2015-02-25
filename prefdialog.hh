@@ -5,30 +5,29 @@
 #include <QLineEdit>
 #include <QDoubleSpinBox>
 
-#include "values.hh"
+#include "cablecovervalues.hh"
 
 namespace Ui {
 class PrefDialog;
 }
 
-class PrefDialog : public QDialog
+class CCPrefDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit PrefDialog(Values &val, QWidget *parent = 0);
-    ~PrefDialog();
+    explicit CCPrefDialog(CCValues &val, QWidget *parent = 0);
+    ~CCPrefDialog();
 
 private slots:
     void onAccept();
 
 private:
-    Values *values{nullptr};
+    CCValues *values{nullptr};
     Ui::PrefDialog *ui;
     void loadValuesInGui();
 
     void saveValues();
-    double getDoubleValue(QLineEdit *lineEdit);
     void setDoubleValue(QLineEdit *le, QString name);
     void setDoubleValue(QDoubleSpinBox *sb, QString name);
 };

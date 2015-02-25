@@ -73,7 +73,7 @@ void MainWindow::grabSettings()
 
 void MainWindow::onPrefClicked()
 {
-    pref = new PrefDialog(values, this);
+    pref = new CCPrefDialog(values, this);
     pref->setAttribute(Qt::WA_DeleteOnClose);
     pref->show();
 }
