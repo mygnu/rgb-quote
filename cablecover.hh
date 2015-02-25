@@ -34,7 +34,7 @@ private:
 
     QVector<QString> designItems = QVector<QString>{"Open Ends", "One End Closed", "Both Ends Closed"};
     QVector<QString> fixingholeItems = QVector<QString>{"Yes", "No"};
-    QVector<QString> finishesItems = QVector<QString>{"None", "Galvanising", "Power Cote", "Spray Paint"};
+    QVector<QString> finishesItems = QVector<QString>{"None", "Galvanising", "Powder Cote", "Spray Paint"};
 
     QLineEdit *customThickness;
 
