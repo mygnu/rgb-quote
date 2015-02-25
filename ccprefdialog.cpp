@@ -1,6 +1,6 @@
 #include <QVariant>
-#include "prefdialog.hh"
-#include "ui_prefdialog.h"
+#include "ccprefdialog.hh"
+#include "ui_ccprefdialog.h"
 
 #include <QDebug>
 #include <QScroller>

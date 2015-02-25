@@ -6,7 +6,7 @@
 #include <QString>
 #include <QDir>
 
-#include "prefdialog.hh"
+#include "ccprefdialog.hh"
 #include "cablecover.hh"
 #include "pdfgenerator.hh"
 

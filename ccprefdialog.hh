@@ -5,7 +5,7 @@
 #include <QLineEdit>
 #include <QDoubleSpinBox>
 
-#include "cablecovervalues.hh"
+#include "ccvalues.hh"
 
 namespace Ui {
 class PrefDialog;

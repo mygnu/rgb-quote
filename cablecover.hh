@@ -5,7 +5,7 @@
 #include <QString>
 #include <QVector>
 #include <QLineEdit>
-#include "cablecovervalues.hh"
+#include "ccvalues.hh"
 
 
 

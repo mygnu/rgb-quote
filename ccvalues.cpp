@@ -1,4 +1,4 @@
-#include "cablecovervalues.hh"
+#include "ccvalues.hh"
 
 CCValues::CCValues():
     settings(QSettings::IniFormat, QSettings::UserScope, "rgbQuoteApp", "config")

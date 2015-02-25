@@ -30,22 +30,22 @@ win32 {
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    prefdialog.cpp \
     cablecover.cpp \
     pdfgenerator.cpp \
-    cablecovervalues.cpp
+    ccprefdialog.cpp \
+    ccvalues.cpp
 
 HEADERS  += \
     cablecover.hh \
     mainwindow.hh \
     pdfgenerator.hh \
-    prefdialog.hh \
-    cablecovervalues.hh
+    ccprefdialog.hh \
+    ccvalues.hh
 
 
 FORMS    += mainwindow.ui \
-    prefdialog.ui \
-    cablecover.ui
+    cablecover.ui \
+    ccprefdialog.ui
 
 
 
