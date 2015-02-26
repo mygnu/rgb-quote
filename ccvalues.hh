@@ -57,6 +57,10 @@ private:
     double sprayPanitPMS{1};
     double powderCotePMS{1};
 
+    double galvanisingMin{1};
+    double sprayPanitMin{1};
+    double powderCoteMin{1};
+
 
     double galvbond0_6mmPrice{1};
     double galvbond1_6mmPrice{1};

@@ -41,7 +41,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="orderNumberLineEdit">
+         <widget class="QLineEdit" name="orderNumberLE">
           <property name="inputMethodHints">
            <set>Qt::ImhDigitsOnly|Qt::ImhPreferNumbers</set>
           </property>
@@ -67,7 +67,7 @@
           <item>
            <widget class="QLabel" name="label_15">
             <property name="text">
-             <string>Price Open Ends</string>
+             <string>Open Ends Price</string>
             </property>
            </widget>
           </item>
@@ -104,7 +104,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QDoubleSpinBox" name="priceOpenEndsSB">
+           <widget class="QDoubleSpinBox" name="openEndsPriceSB">
             <property name="singleStep">
              <double>0.500000000000000</double>
             </property>
@@ -124,7 +124,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="galvaniseMinimumSB">
+           <widget class="QDoubleSpinBox" name="galvanisingMinSB">
             <property name="singleStep">
              <double>0.500000000000000</double>
             </property>
@@ -134,7 +134,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="sprayCoteMinimumSB">
+           <widget class="QDoubleSpinBox" name="sprayPaintMinSB">
             <property name="singleStep">
              <double>0.500000000000000</double>
             </property>
@@ -144,7 +144,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="powderCoteMinimumSB">
+           <widget class="QDoubleSpinBox" name="powderCoteMinSB">
             <property name="singleStep">
              <double>0.500000000000000</double>
             </property>
@@ -172,14 +172,14 @@
           <item>
            <widget class="QLabel" name="label_13">
             <property name="text">
-             <string>Price Both Ends Closed</string>
+             <string>Both Ends Closed Price</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="label_12">
             <property name="text">
-             <string>Price One End Closed</string>
+             <string>One End Closed Price</string>
             </property>
            </widget>
           </item>
@@ -209,7 +209,7 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
-           <widget class="QDoubleSpinBox" name="priceBothEndsClosedSB">
+           <widget class="QDoubleSpinBox" name="bothEndsClosedPriceSB">
             <property name="singleStep">
              <double>0.500000000000000</double>
             </property>
@@ -219,7 +219,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="priceOneEndCloseSB">
+           <widget class="QDoubleSpinBox" name="oneEndClosedPriceSB">
             <property name="singleStep">
              <double>0.500000000000000</double>
             </property>
@@ -229,7 +229,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="galvaniseChargeSB">
+           <widget class="QDoubleSpinBox" name="galvanisingPKG_SB">
             <property name="singleStep">
              <double>0.100000000000000</double>
             </property>
@@ -239,7 +239,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="sprayPaintChargeSB">
+           <widget class="QDoubleSpinBox" name="sprayPaintPMS_SB">
             <property name="singleStep">
              <double>0.100000000000000</double>
             </property>
@@ -249,7 +249,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="powderCoteChargeSB">
+           <widget class="QDoubleSpinBox" name="powderCotePMS_SB">
             <property name="singleStep">
              <double>0.100000000000000</double>
             </property>
@@ -493,17 +493,17 @@
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>orderNumberLineEdit</tabstop>
-  <tabstop>priceBothEndsClosedSB</tabstop>
-  <tabstop>priceOneEndCloseSB</tabstop>
-  <tabstop>galvaniseChargeSB</tabstop>
-  <tabstop>sprayPaintChargeSB</tabstop>
-  <tabstop>powderCoteChargeSB</tabstop>
-  <tabstop>priceOpenEndsSB</tabstop>
+  <tabstop>orderNumberLE</tabstop>
+  <tabstop>bothEndsClosedPriceSB</tabstop>
+  <tabstop>oneEndClosedPriceSB</tabstop>
+  <tabstop>galvanisingPKG_SB</tabstop>
+  <tabstop>sprayPaintPMS_SB</tabstop>
+  <tabstop>powderCotePMS_SB</tabstop>
+  <tabstop>openEndsPriceSB</tabstop>
   <tabstop>flangesChargeSB</tabstop>
-  <tabstop>galvaniseMinimumSB</tabstop>
-  <tabstop>sprayCoteMinimumSB</tabstop>
-  <tabstop>powderCoteMinimumSB</tabstop>
+  <tabstop>galvanisingMinSB</tabstop>
+  <tabstop>sprayPaintMinSB</tabstop>
+  <tabstop>powderCoteMinSB</tabstop>
   <tabstop>kgFor0_6mmSB</tabstop>
   <tabstop>kgFor1_6mmSB</tabstop>
   <tabstop>kgFor3_0mmSB</tabstop>

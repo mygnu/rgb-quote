@@ -30,30 +30,34 @@ void CCPrefDialog::loadValuesInGui()
 {
 
     QSettings &settings = values->settings;
-    ui->openAtStartup->setChecked(settings.value("this/openAtStartup").toBool());
-    if(settings.contains("values/orderNumber"))
-    {
-        ui->orderNumberLineEdit->setPlaceholderText(settings.value("values/orderNumber").toString());
-        ui->orderNumberLineEdit->setReadOnly(true);
-    }
+    ui->openAtStartup->setChecked(settings.value("Application/openAtStartup").toBool());
+
+    if(!settings.contains("Application/orderNumber"))
+        settings.setValue("Application/orderNumber", 10000);
     else
-        settings.setValue("values/orderNumber", 10000);
+        ui->orderNumberLE->setPlaceholderText(settings.value("Application/orderNumber").toString());
 
-    setDoubleValue(ui->kgFor0_6mmSB, "values/thick06mmKG");
-    setDoubleValue(ui->kgFor1_6mmSB, "values/thick16mmKG");
-    setDoubleValue(ui->kgFor3_0mmSB, "values/thick30mmKG");
-    setDoubleValue(ui->flangesChargeSB, "values/flangesCharge");
-    setDoubleValue(ui->galvaniseChargeSB, "values/galvPKG");
+    ui->orderNumberLE->setReadOnly(true);
 
-    setDoubleValue(ui->sprayPaintChargeSB, "values/sprayPaintPMS");
-    setDoubleValue(ui->powderCoteChargeSB, "values/powderCotePMS");
-    setDoubleValue(ui->priceFor0_6mmSB, "values/priceSheet06mm");
-    setDoubleValue(ui->priceFor1_6mmSB, "values/priceSheet16mm");
-    setDoubleValue(ui->priceFor3_0mmSB, "values/priceSheet30mm");
-    setDoubleValue(ui->profitMarginSB, "values/profitMargin");
-    setDoubleValue(ui->priceOpenEndsSB, "value/priceOpenEnds");
-    setDoubleValue(ui->priceOneEndCloseSB, "values/priceOneEndClosed");
-    setDoubleValue(ui->priceBothEndsClosedSB, "values/priceBothEndsClosed");
+    setDoubleValue(ui->openEndsPriceSB, "cableCover/openEndsPrice");
+    setDoubleValue(ui->oneEndClosedPriceSB, "cableCover/oneEndClosedPrice");
+    setDoubleValue(ui->bothEndsClosedPriceSB, "cableCover/bothEndsClosedPrice");
+
+    setDoubleValue(ui->flangesChargeSB, "cableCover/flangesCharge");
+
+    setDoubleValue(ui->galvanisingPKG_SB, "cableCover/galvanisingPKG");
+    setDoubleValue(ui->sprayPaintPMS_SB, "cableCover/sprayPanitPMS");
+    setDoubleValue(ui->powderCotePMS_SB, "cableCover/powderCotePMS");
+
+    setDoubleValue(ui->galvanisingMinSB, "cableCover/galvanisingMin");
+    setDoubleValue(ui->sprayPaintMinSB, "cableCover/sprayPanitMin");
+    setDoubleValue(ui->powderCoteMinSB, "cableCover/powderCoteMin");
+
+    setDoubleValue(ui->profitMarginSB, "cableCover/profitMargin");
+
+//    setDoubleValue(ui->priceFor0_6mmSB, "cableCover/priceSheet06mm");
+//    setDoubleValue(ui->priceFor1_6mmSB, "cableCover/priceSheet16mm");
+//    setDoubleValue(ui->priceFor3_0mmSB, "cableCover/priceSheet30mm");
 
 }
 
@@ -66,26 +70,38 @@ void CCPrefDialog::onAccept()
 void CCPrefDialog::saveValues()
 {
     QSettings &settings = values->settings;
-    settings.setValue("this/edited", true);
+    settings.setValue("Application/edited", true);
     if(ui->openAtStartup->isChecked())
-        settings.setValue("this/openAtStartup", true);
+        settings.setValue("Application/openAtStartup", true);
     else
-        settings.setValue("this/openAtStartup", false);
+        settings.setValue("Application/openAtStartup", false);
 
-    settings.setValue("values/thick06mmKG", ui->kgFor0_6mmSB->value());
-    settings.setValue("values/thick16mmKG", ui->kgFor1_6mmSB->value());
-    settings.setValue("values/thick30mmKG", ui->kgFor3_0mmSB->value());
-    settings.setValue("values/flangesCharge", ui->flangesChargeSB->value());
-    settings.setValue("values/galvPKG", ui->galvaniseChargeSB->value());
-    settings.setValue("values/sprayPaintPMS", ui->sprayPaintChargeSB->value());
-    settings.setValue("values/powderCotePMS", ui->powderCoteChargeSB->value());
-    settings.setValue("values/priceSheet06mm", ui->priceFor0_6mmSB->value());
-    settings.setValue("values/priceSheet16mm", ui->priceFor1_6mmSB->value());
-    settings.setValue("values/priceSheet30mm", ui->priceFor3_0mmSB->value());
-    settings.setValue("values/profitMargin", ui->profitMarginSB->value());
-    settings.setValue("values/priceOpenEnds", ui->priceOpenEndsSB->value());
-    settings.setValue("values/priceOneEndClosed", ui->priceOneEndCloseSB->value());
-    settings.setValue("values/priceBothEndsClosed", ui->priceBothEndsClosedSB->value());
+    settings.setValue("cableCover/openEndsPrice", ui->openEndsPriceSB->value());
+    settings.setValue("cableCover/oneEndClosedPrice", ui->oneEndClosedPriceSB->value());
+    settings.setValue("cableCover/bothEndsClosedPrice", ui->bothEndsClosedPriceSB->value());
+
+
+    settings.setValue("cableCover/flangesCharge", ui->flangesChargeSB->value());
+
+    settings.setValue("cableCover/galvanisingPKG", ui->galvanisingPKG_SB->value());
+    settings.setValue("cableCover/sprayPanitPMS", ui->sprayPaintPMS_SB->value());
+    settings.setValue("cableCover/powderCotePMS", ui->powderCotePMS_SB->value());
+
+    settings.setValue("cableCover/galvanisingMin", ui->galvanisingMinSB->value());
+    settings.setValue("cableCover/sprayPanitMin", ui->sprayPaintMinSB->value()) ;
+    settings.setValue("cableCover/powderCoteMin", ui->powderCoteMinSB->value());
+
+    settings.setValue("cableCover/profitMargin", ui->profitMarginSB->value());
+
+    //    settings.setValue("cableCover/galvbond0_6KGPM", ui->g);
+    //    settings.setValue("cableCover/galvbond1_6KGPM");
+    //    settings.setValue("cableCover/galvbond3_0KGPM");
+    //    settings.setValue("cableCover/galvbond0_6mmPrice");
+    //    settings.setValue("cableCover/galvbond1_6mmPrice");
+    //    settings.setValue("cableCover/galvbond3_0mmPrice");
+
+
+
 }
 
 

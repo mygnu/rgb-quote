@@ -15,8 +15,8 @@ void CCValues::load()
 {
     if(settings.contains("Application/edited") && settings.value("Application/edited").toBool())
     {
-        openAtStartup = settings.value("Application/openAtStartup").toBool();
         orderNumber = settings.value("cableCover/orderNumber").toInt();
+        openAtStartup = settings.value("Application/openAtStartup").toBool();
 
         galvbond0_6KGPM = settings.value("cableCover/galvbond0_6KGPM").toDouble();
         galvbond1_6KGPM = settings.value("cableCover/galvbond1_6KGPM").toDouble();
@@ -27,6 +27,10 @@ void CCValues::load()
         galvanisingPKG = settings.value("cableCover/galvanisingPKG").toDouble();
         sprayPanitPMS = settings.value("cableCover/sprayPanitPMS").toDouble();
         powderCotePMS = settings.value("cableCover/powderCotePMS").toDouble();
+
+        galvanisingMin = settings.value("cableCover/galvanisingMin").toDouble();
+        sprayPanitMin = settings.value("cableCover/sprayPanitMin").toDouble();
+        powderCoteMin = settings.value("cableCover/powderCoteMin").toDouble();
 
         galvbond0_6mmPrice = settings.value("cableCover/galvbond0_6mmPrice").toDouble();
         galvbond1_6mmPrice = settings.value("cableCover/galvbond1_6mmPrice").toDouble();
