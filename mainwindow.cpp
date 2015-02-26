@@ -33,6 +33,7 @@ void MainWindow::createMenus()
 
     for(auto item : comboItems)
         ui->comboBox->addItem(item);
+    selectionMade(ui->comboBox->currentText());
 
     connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)),
             this, SLOT(selectionMade(QString)));
@@ -42,10 +43,11 @@ void MainWindow::createMenus()
 
 void MainWindow::selectionMade(const QString &current)
 {
-    if(current == comboItems.at(1)) // if it is cable cover
+    if(current == comboItems.at(0)) // if it is cable cover
     {
-        cableCover1 = cableCover1 == nullptr ? new CableCover(this, comboItems.at(1)) : cableCover1;
-        ui->Item_label->setText(comboItems.at(1));
+        cableCover1 = cableCover1 == nullptr
+                ? new CableCover(this) : cableCover1;
+        ui->Item_label->setText(comboItems.at(0));
 
         cableCover1->setValues(&values);
         connect(ui->pushButtonCalculate, SIGNAL(clicked()),

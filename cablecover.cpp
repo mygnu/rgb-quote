@@ -3,9 +3,8 @@
 #include "cablecover.hh"
 #include "ui_cablecover.h"
 
-CableCover::CableCover(QWidget *parent, const QString &n) :
+CableCover::CableCover(QWidget *parent) :
     QWidget(parent),
-    name(n),
     ui(new Ui::CableCover)
 {
     ui->setupUi(this);
@@ -128,7 +127,7 @@ void CableCover::calculate()
     double finalPrice = totalCost + totalCost * values->getProfitMargin() / 100;
 
 
-    qDebug() << labourCost << "area CM:" << area /100 << "weight" << weight
+    qDebug() << "area CM:" << area /100 << "weight" << weight
              << "\nfinishing cost" << finishingCost << "total cost" << totalCost << "final price" << finalPrice;
 
     //double density = values->weight / (1000 * 1000 * 3);

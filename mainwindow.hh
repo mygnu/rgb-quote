@@ -38,7 +38,7 @@ private:
 
     void createMenus();
     CCPrefDialog *pref = nullptr;
-    const QVector<QString> comboItems = QVector<QString> {"None Selected", "Cable Cover", "Item Two"};
+    const QVector<QString> comboItems = QVector<QString> {"Cable Cover", "Item Two"};
     void createPdfCableCover(const QString &filename);
 };
 

@@ -18,8 +18,7 @@ class CableCover : public QWidget
     Q_OBJECT
 
 public:
-    QString name;
-    explicit CableCover(QWidget *parent = 0,const QString &n ="Cable Cover");
+    explicit CableCover(QWidget *parent = 0);
     ~CableCover();
     double getResult();
     void setValues(const CCValues *val);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>756</width>
-    <height>481</height>
+    <width>799</width>
+    <height>514</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -283,7 +283,7 @@
       <widget class="QWidget" name="layoutWidget_2">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>220</x>
          <y>90</y>
          <width>156</width>
          <height>175</height>
@@ -416,7 +416,7 @@
       <widget class="QWidget" name="layoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>350</x>
+         <x>410</x>
          <y>90</y>
          <width>156</width>
          <height>175</height>
@@ -549,7 +549,7 @@
       <widget class="QWidget" name="layoutWidget_4">
        <property name="geometry">
         <rect>
-         <x>520</x>
+         <x>600</x>
          <y>90</y>
          <width>156</width>
          <height>175</height>
@@ -682,9 +682,9 @@
       <widget class="QWidget" name="layoutWidget_5">
        <property name="geometry">
         <rect>
-         <x>540</x>
+         <x>610</x>
          <y>310</y>
-         <width>122</width>
+         <width>134</width>
          <height>22</height>
         </rect>
        </property>
@@ -697,14 +697,21 @@
          </widget>
         </item>
         <item>
-         <widget class="QDoubleSpinBox" name="profitMarginSB"/>
+         <widget class="QDoubleSpinBox" name="profitMarginSB">
+          <property name="maximum">
+           <double>1000.000000000000000</double>
+          </property>
+          <property name="value">
+           <double>100.000000000000000</double>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
       <widget class="Line" name="line">
        <property name="geometry">
         <rect>
-         <x>153</x>
+         <x>180</x>
          <y>10</y>
          <width>41</width>
          <height>381</height>
@@ -717,9 +724,9 @@
       <widget class="Line" name="line_2">
        <property name="geometry">
         <rect>
-         <x>320</x>
+         <x>380</x>
          <y>10</y>
-         <width>51</width>
+         <width>31</width>
          <height>381</height>
         </rect>
        </property>
@@ -730,9 +737,9 @@
       <widget class="Line" name="line_3">
        <property name="geometry">
         <rect>
-         <x>490</x>
+         <x>570</x>
          <y>10</y>
-         <width>41</width>
+         <width>31</width>
          <height>381</height>
         </rect>
        </property>
@@ -745,7 +752,7 @@
         <rect>
          <x>10</x>
          <y>91</y>
-         <width>156</width>
+         <width>174</width>
          <height>175</height>
         </rect>
        </property>
@@ -859,13 +866,34 @@
              </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="galvbond0_6mmPriceSB"/>
+             <widget class="QDoubleSpinBox" name="galvbond0_6mmPriceSB">
+              <property name="maximum">
+               <double>10000.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="galvbond1_6mmPriceSB"/>
+             <widget class="QDoubleSpinBox" name="galvbond1_6mmPriceSB">
+              <property name="maximum">
+               <double>10000.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+             </widget>
             </item>
             <item>
-             <widget class="QDoubleSpinBox" name="galvbond3_0mmPriceSB"/>
+             <widget class="QDoubleSpinBox" name="galvbond3_0mmPriceSB">
+              <property name="maximum">
+               <double>10000.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

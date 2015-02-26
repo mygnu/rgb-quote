@@ -59,9 +59,10 @@ void CCPrefDialog::loadValuesInGui()
 
     setDoubleValue(ui->profitMarginSB, "cableCover/profitMargin");
 
-//    setDoubleValue(ui->priceFor0_6mmSB, "cableCover/priceSheet06mm");
-//    setDoubleValue(ui->priceFor1_6mmSB, "cableCover/priceSheet16mm");
-//    setDoubleValue(ui->priceFor3_0mmSB, "cableCover/priceSheet30mm");
+    setDoubleValue(ui->galvbond0_6KGPM_SB, "cableCover/galvbond0_6KGPM");
+    setDoubleValue(ui->galvbond1_6KGPM_SB, "cableCover/galvbond1_6KGPM");
+    setDoubleValue(ui->galvbond3_0KGPM_SB, "cableCover/galvbond3_0KGPM");
+
 
 }
 
@@ -101,12 +102,11 @@ void CCPrefDialog::saveValues()
 
     settings.setValue("cableCover/profitMargin", ui->profitMarginSB->value());
 
-    //    settings.setValue("cableCover/galvbond0_6KGPM", ui->g);
-    //    settings.setValue("cableCover/galvbond1_6KGPM");
-    //    settings.setValue("cableCover/galvbond3_0KGPM");
-    //    settings.setValue("cableCover/galvbond0_6mmPrice");
-    //    settings.setValue("cableCover/galvbond1_6mmPrice");
-    //    settings.setValue("cableCover/galvbond3_0mmPrice");
+    settings.setValue("cableCover/galvbond0_6KGPM", ui->galvbond0_6KGPM_SB->value());
+    settings.setValue("cableCover/galvbond1_6KGPM", ui->galvbond1_6KGPM_SB->value());
+    settings.setValue("cableCover/galvbond3_0KGPM", ui->galvbond3_0KGPM_SB->value());
+
+
 
 
 
