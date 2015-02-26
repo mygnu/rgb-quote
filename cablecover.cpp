@@ -76,44 +76,52 @@ void CableCover::calculate()
                                                // is greater than 2400mm
     }
 
-    double thickness;
-    if(ui->thicknessComboBox->currentText() == thicknessItems.at(0))
-        thickness = 0.6;
-    else if(ui->thicknessComboBox->currentText() == thicknessItems.at(1))
-        thickness = 1.6;
-    else
-        thickness = 3.00;
+
     // select material here
-    double materialCost{0};
+    double materialCost;
+    double weight; // grams
 
-    if(ui->materialComboBox->currentText() == materialItems.at(0))
+    if(ui->materialComboBox->currentText() == materialItems.at(0)) // galvabond
     {
-
+        if(ui->thicknessComboBox->currentText() == thicknessItems.at(0)) // 0.6
+        {
+            materialCost = values->getGalvbond0_6mmPrice() / 1000000 * area;
+            weight = (area /1000000) * values->getGalvbond0_6KGPM() * 1000; // result is calculated by gm/mm3
+        }
+        else if(ui->thicknessComboBox->currentText() == thicknessItems.at(1)) //1.6
+        {
+            materialCost = values->getGalvbond1_6mmPrice() / 1000000 * area;
+            weight = (area /1000000) * values->getGalvbond1_6KGPM() * 1000;
+        }
+        else if(ui->thicknessComboBox->currentText() == thicknessItems.at(2)) //3.0
+        {
+            materialCost = values->getGalvbond3_0mmPrice() / 1000000 * area;
+            weight = (area /1000000) * values->getGalvbond3_0KGPM() * 1000;
+        }
     }
 
 
-    double density = 0.00761333; // gm/mm cube
-    double weight = area * thickness * density; // grams
-
-    // calculate material cost
-
-
-//    IF finishing chosen = Galvanising Then
-//        Finishting_cost = weight *(Galvanise finishing)
-//        IF Finishing_cost < 2.0
-//            Finishing_cost == 2.0
     double finishingCost = 0;
-    if(ui->finishComboBox->currentText() == "Galvanising")
+    if(ui->finishComboBox->currentText() == finishesItems.at(1))
     {
         finishingCost = weight/1000 * values->getGalvanisingPKG();
+
+        finishingCost = finishingCost < values->getGalvanisingMin()
+                ? values->getGalvanisingMin() : finishingCost;
     }
-    else if(ui->finishComboBox->currentText() == "Powder Cote")
+    else if(ui->finishComboBox->currentText() == finishesItems.at(2))
     {
         finishingCost = area /1000000 * values->getPowderCotePMS();
+
+        finishingCost = finishingCost < values->getGalvanisingMin()
+                ? values->getGalvanisingMin() : finishingCost;
     }
-    else if(ui->finishComboBox->currentText() == "Spray Paint")
+    else if(ui->finishComboBox->currentText() == finishesItems.at(3))
     {
         finishingCost = area /1000000 * values->getSprayPaintPMS();
+
+        finishingCost = finishingCost < values->getSprayPaintMin()
+                ? values->getSprayPaintMin() : finishingCost;
     }
 
     double totalCost = labourCost + materialCost + finishingCost;

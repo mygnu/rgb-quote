@@ -53,6 +53,10 @@ void CCPrefDialog::loadValuesInGui()
     setDoubleValue(ui->sprayPaintMinSB, "cableCover/sprayPanitMin");
     setDoubleValue(ui->powderCoteMinSB, "cableCover/powderCoteMin");
 
+    setDoubleValue(ui->galvbond0_6mmPriceSB, "cableCover/galvbond0_6mmPrice");
+    setDoubleValue(ui->galvbond1_6mmPriceSB, "cableCover/galvbond1_6mmPrice");
+    setDoubleValue(ui->galvbond3_0mmPriceSB, "cableCover/galvbond3_0mmPrice");
+
     setDoubleValue(ui->profitMarginSB, "cableCover/profitMargin");
 
 //    setDoubleValue(ui->priceFor0_6mmSB, "cableCover/priceSheet06mm");
@@ -90,6 +94,10 @@ void CCPrefDialog::saveValues()
     settings.setValue("cableCover/galvanisingMin", ui->galvanisingMinSB->value());
     settings.setValue("cableCover/sprayPanitMin", ui->sprayPaintMinSB->value()) ;
     settings.setValue("cableCover/powderCoteMin", ui->powderCoteMinSB->value());
+
+    settings.setValue("cableCover/galvbond0_6mmPrice", ui->galvbond0_6mmPriceSB->value());
+    settings.setValue("cableCover/galvbond1_6mmPrice", ui->galvbond1_6mmPriceSB->value());
+    settings.setValue("cableCover/galvbond3_0mmPrice", ui->galvbond3_0mmPriceSB->value());
 
     settings.setValue("cableCover/profitMargin", ui->profitMarginSB->value());
 

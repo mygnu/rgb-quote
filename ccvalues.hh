@@ -28,6 +28,9 @@ public:
     double getSprayPaintPMS()const {return sprayPanitPMS;}
     double getPowderCotePMS()const {return powderCotePMS;}
 
+    double getGalvanisingMin() const {return galvanisingMin;}
+    double getSprayPaintMin()const {return sprayPanitMin;}
+    double getPowderCoteMin()const {return powderCoteMin;}
 
     double getGalvbond0_6mmPrice()const {return galvbond0_6mmPrice;}
     double getGalvbond1_6mmPrice()const {return galvbond1_6mmPrice;}
@@ -49,10 +52,6 @@ private:
 
     double flangesCharge{1};
 
-    double galvbond0_6KGPM{1};
-    double galvbond1_6KGPM{1};
-    double galvbond3_0KGPM{1};
-
     double galvanisingPKG{1};
     double sprayPanitPMS{1};
     double powderCotePMS{1};
@@ -61,6 +60,9 @@ private:
     double sprayPanitMin{1};
     double powderCoteMin{1};
 
+    double galvbond0_6KGPM{1};
+    double galvbond1_6KGPM{1};
+    double galvbond3_0KGPM{1};
 
     double galvbond0_6mmPrice{1};
     double galvbond1_6mmPrice{1};

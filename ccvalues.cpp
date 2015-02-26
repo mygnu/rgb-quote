@@ -18,9 +18,9 @@ void CCValues::load()
         orderNumber = settings.value("cableCover/orderNumber").toInt();
         openAtStartup = settings.value("Application/openAtStartup").toBool();
 
-        galvbond0_6KGPM = settings.value("cableCover/galvbond0_6KGPM").toDouble();
-        galvbond1_6KGPM = settings.value("cableCover/galvbond1_6KGPM").toDouble();
-        galvbond3_0KGPM = settings.value("cableCover/galvbond3_0KGPM").toDouble();
+        openEndsPrice = settings.value("cableCover/openEndsPrice").toDouble();
+        oneEndClosedPrice = settings.value("cableCover/oneEndClosedPrice").toDouble();
+        bothEndsClosedPrice = settings.value("cableCover/bothEndsClosedPrice").toDouble();
 
         flangesCharge = settings.value("cableCover/flangesCharge").toDouble();
 
@@ -36,11 +36,12 @@ void CCValues::load()
         galvbond1_6mmPrice = settings.value("cableCover/galvbond1_6mmPrice").toDouble();
         galvbond3_0mmPrice = settings.value("cableCover/galvbond3_0mmPrice").toDouble();
 
+        galvbond0_6KGPM = settings.value("cableCover/galvbond0_6KGPM").toDouble();
+        galvbond1_6KGPM = settings.value("cableCover/galvbond1_6KGPM").toDouble();
+        galvbond3_0KGPM = settings.value("cableCover/galvbond3_0KGPM").toDouble();
+
         profitMargin = settings.value("cableCover/profitMargin").toDouble();
 
-        openEndsPrice = settings.value("cableCover/openEndsPrice").toDouble();
-        oneEndClosedPrice = settings.value("cableCover/oneEndClosedPrice").toDouble();
-        bothEndsClosedPrice = settings.value("cableCover/bothEndsClosedPrice").toDouble();
     }
 }
 
