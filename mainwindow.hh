@@ -13,7 +13,7 @@
 namespace Ui {
 class MainWindow;
 }
-static const QString pdfPath = QDir::currentPath() + "/CableCover.pdf";
+static const QString pdfPath = QDir::currentPath() + "/TemplateCableCover.pdf";
 
 class MainWindow : public QMainWindow
 {

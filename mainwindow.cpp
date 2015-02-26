@@ -83,7 +83,7 @@ void MainWindow::onPrefClicked()
 void MainWindow::onCreatePdfClicked()
 {
 #ifdef Q_OS_WIN32
-    if(ui->comboBox->currentText() == comboItems.at(1))
+    if(ui->comboBox->currentText() == comboItems.at(0))
         {
             QString filename = QFileDialog::getSaveFileName(this, tr("Save PDF File"),"untitled.pdf",
                                                             tr("PDF Files (*.pdf *.PDF)"));

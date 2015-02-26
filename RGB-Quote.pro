@@ -12,6 +12,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = RGB-Quote
 TEMPLATE = app
 
+
 win32 {
     INCLUDEPATH += "$$PWD/PDFWriter/Headers/FreeType"
     INCLUDEPATH += "$$PWD/PDFWriter/Headers/LibTiff"
@@ -24,7 +25,7 @@ win32 {
     LIBS += -L"$$PWD/PDFWriter/Binaries" -lzlib
     LIBS += -L"$$PWD/PDFWriter/Binaries" -lpdfwriter
     LIBS += -L"$$PWD/PDFWriter/Binaries" -lLibJpeg
-    CONFIG += static
+   # CONFIG += static
 }
 
 
@@ -46,6 +47,8 @@ HEADERS  += \
 FORMS    += mainwindow.ui \
     cablecover.ui \
     ccprefdialog.ui
+
+RC_FILE = icon.rc
 
 
 
