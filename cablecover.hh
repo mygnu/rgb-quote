@@ -6,8 +6,7 @@
 #include <QVector>
 #include <QLineEdit>
 #include "ccvalues.hh"
-
-
+#include "result.h"
 
 namespace Ui {
 class CableCover;
@@ -20,11 +19,9 @@ class CableCover : public QWidget
 public:
     explicit CableCover(QWidget *parent = 0);
     ~CableCover();
-    double getResult();
-    void setValues(const CCValues *val);
-
-public slots:
-    void calculate();
+    Result getResult() const {return res;}
+    void setValues(const CCValues *values);
+    Result calculate();
 
 private:
     Ui::CableCover *ui;
@@ -37,10 +34,11 @@ private:
 
     QLineEdit *customThickness;
 
-    double result{-1};
-    const CCValues  *values;
+    Result res;
+    const CCValues  *val;
     void setupMenus();
-    void connectSignals();
 };
+
+
 
 #endif // CABLECOVER_H

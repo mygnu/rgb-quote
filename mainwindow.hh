@@ -9,6 +9,7 @@
 #include "ccprefdialog.hh"
 #include "cablecover.hh"
 #include "pdfgenerator.hh"
+#include "result.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,10 +27,10 @@ public:
 private slots:
     void onPrefClicked();
     void selectionMade(const QString &current);
-    void grabSettings();
-
     void onCreatePdfClicked();
+    void calculate();
 private:
+    Result res;
     CCValues values;
     Ui::MainWindow *ui;
     QAction *editPrefAct{nullptr};
@@ -39,7 +40,7 @@ private:
     void createMenus();
     CCPrefDialog *pref = nullptr;
     const QVector<QString> comboItems = QVector<QString> {"Cable Cover", "Item Two"};
-    void createPdfCableCover(const QString &filename);
+    void createPdfCableCover(const QString &filename, const Result &res);
 };
 
 #endif // MAINWINDOW_H

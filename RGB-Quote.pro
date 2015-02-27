@@ -50,7 +50,8 @@ HEADERS  += \
     mainwindow.hh \
     pdfgenerator.hh \
     ccprefdialog.hh \
-    ccvalues.hh
+    ccvalues.hh \
+    result.h
 
 
 FORMS    += mainwindow.ui \

@@ -1,11 +1,11 @@
 #include <QDebug>
 
-#include "mainwindow.hh"
-#include "ui_mainwindow.h"
 #include <QScroller>
 #include <QFileDialog>
 #include <QMessageBox>
 
+#include "mainwindow.hh"
+#include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -51,7 +51,7 @@ void MainWindow::selectionMade(const QString &current)
 
         cableCover1->setValues(&values);
         connect(ui->pushButtonCalculate, SIGNAL(clicked()),
-                cableCover1, SLOT(calculate()));
+                this, SLOT(calculate()));
 
         ui->scrollArea->setWidget(cableCover1);
         QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
@@ -67,8 +67,18 @@ void MainWindow::selectionMade(const QString &current)
     }
 }
 
-void MainWindow::grabSettings()
+void MainWindow::calculate()
 {
+    if(cableCover1 != nullptr)
+    {
+        res = cableCover1->calculate();
+        QMessageBox msgBox;
+        msgBox.setText("Total Cost: " + QString::number(res.getTotalCost()) + "\n"
+                       + "Final Value: " + QString::number(res.getFinalPrice()));
+        msgBox.exec();
+        ui->pushButtonPrintPdf->setEnabled(true);
+
+    }
 
 }
 
@@ -89,7 +99,7 @@ void MainWindow::onCreatePdfClicked()
                                                             tr("PDF Files (*.pdf *.PDF)"));
             if(!filename.isEmpty())
             {
-                createPdfCableCover(filename);
+                createPdfCableCover(filename, res);
             }
         }
 
@@ -110,7 +120,7 @@ void MainWindow::onCreatePdfClicked()
 #endif
 }
 
-void MainWindow::createPdfCableCover(const QString &filename)
+void MainWindow::createPdfCableCover(const QString &filename, const Result &res)
 {
 #ifdef Q_OS_WIN32
     PdfGenerator pdfgen(filename);
@@ -124,9 +134,8 @@ void MainWindow::createPdfCableCover(const QString &filename)
                                                    tr("PDF Files (*.pdf *.PDF)"));
     }
     pdfgen.createContextFromPdf(oldfilePath);
-
-
-    pdfgen.setFixingFlange("22 mm");
-    pdfgen.setWidthInternal("12 mm");
+    pdfgen.putText(QString::number(res.getFinalPrice()), 490, 500);
+//    pdfgen.setFixingFlange("22 mm");
+//    pdfgen.setWidthInternal("12 mm");
 #endif  //Q_OS_WIN32
 }
