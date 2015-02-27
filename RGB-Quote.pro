@@ -20,12 +20,21 @@ win32 {
     INCLUDEPATH += "$$PWD/PDFWriter/Headers/ZLib"
     INCLUDEPATH += "$$PWD/PDFWriter/Headers/PDFWriter"
 
-    LIBS += -L"$$PWD/PDFWriter/Binaries" -lFreeType
-    LIBS += -L"$$PWD/PDFWriter/Binaries" -llibTiff
-    LIBS += -L"$$PWD/PDFWriter/Binaries" -lzlib
-    LIBS += -L"$$PWD/PDFWriter/Binaries" -lpdfwriter
-    LIBS += -L"$$PWD/PDFWriter/Binaries" -lLibJpeg
-   # CONFIG += static
+    CONFIG( debug, debug|release ) {
+    # debug
+    LIBS += -L"$$PWD/PDFWriter/debug" -lFreeType
+    LIBS += -L"$$PWD/PDFWriter/debug" -llibTiff
+    LIBS += -L"$$PWD/PDFWriter/debug" -lzlib
+    LIBS += -L"$$PWD/PDFWriter/debug" -lpdfwriter
+    LIBS += -L"$$PWD/PDFWriter/debug" -lLibJpeg
+} else {
+    # release#
+    LIBS += -L"$$PWD/PDFWriter/release" -lFreeType
+    LIBS += -L"$$PWD/PDFWriter/release" -llibTiff
+    LIBS += -L"$$PWD/PDFWriter/release" -lzlib
+    LIBS += -L"$$PWD/PDFWriter/release" -lpdfwriter
+    LIBS += -L"$$PWD/PDFWriter/release" -lLibJpeg
+    }
 }
 
 
