@@ -1,7 +1,13 @@
 #include <QDebug>
 #include <QScroller>
+#include <QFileDialog>
+#include <QFile>
+#include <QMessageBox>
+#include <QString>
+
 #include "cablecover.hh"
 #include "ui_cablecover.h"
+#include "pdfgenerator.hh"
 
 CableCover::CableCover(QWidget *parent) :
     QWidget(parent),
@@ -36,30 +42,30 @@ void CableCover::setupMenus()
         ui->fixingHolesComboBox->addItem(item);
 }
 
-Result CableCover::calculate()
+void CableCover::calculate()
 {
-    res.labourCost;
+
     if(ui->designComboBox->currentText() == designItems.at(0))
-        res.labourCost = val->getOpenEnds();
+        labourCost = val->getOpenEnds();
     else if(ui->designComboBox->currentText() == designItems.at(1))
-        res.labourCost = val->getOneEndClosed();
+        labourCost = val->getOneEndClosed();
     else if(ui->designComboBox->currentText() == designItems.at(2))
-        res.labourCost = val->getBothEndsClosed();
+        labourCost = val->getBothEndsClosed();
     // if flanges are not required remove $5 from the labour cost
     if(ui->fixingFlangeSB->value() <= 0)
-        res.labourCost -= 5;
+        labourCost -= 5;
     //TODO create variable for labour reduction
 
 // Area = (internal width + (2*depth) + (2*flanges) ) * Length
-    res.area = (ui->widthSB->value() + (ui->DepthSB->value() * 2)
+    area = (ui->widthSB->value() + (ui->DepthSB->value() * 2)
                    + (ui->fixingFlangeSB->value() * 2)) * ui->lengthSB->value();
 
 //    IF Area > 2400 ,  then
 //    labour cost = labour cost + labour cost * increase / 100             (default increase is 50)
 
-    if(res.area > 2400)
+    if(area > 2400)
     {
-        res.labourCost += (res.labourCost * 50 / 100); // variable for labour increase if area is
+        labourCost += (labourCost * 50 / 100); // variable for labour increase if area is
                                                // is greater than 2400mm
     }
 
@@ -71,18 +77,18 @@ Result CableCover::calculate()
     {
         if(ui->thicknessComboBox->currentText() == thicknessItems.at(0)) // 0.6
         {
-            res.materialCost = val->getGalvbond0_6mmPrice() / 1000000 * res.area;
-            res.weight = (res.area /1000000) * val->getGalvbond0_6KGPM() * 1000; // result is calculated by gm/mm3
+            materialCost = val->getGalvbond0_6mmPrice() / 1000000 * area;
+            weight = (area /1000000) * val->getGalvbond0_6KGPM() * 1000; // result is calculated by gm/mm3
         }
         else if(ui->thicknessComboBox->currentText() == thicknessItems.at(1)) //1.6
         {
-            res.materialCost = val->getGalvbond1_6mmPrice() / 1000000 * res.area;
-            res.weight = (res.area /1000000) * val->getGalvbond1_6KGPM() * 1000;
+            materialCost = val->getGalvbond1_6mmPrice() / 1000000 * area;
+            weight = (area /1000000) * val->getGalvbond1_6KGPM() * 1000;
         }
         else if(ui->thicknessComboBox->currentText() == thicknessItems.at(2)) //3.0
         {
-            res.materialCost = val->getGalvbond3_0mmPrice() / 1000000 * res.area;
-            res.weight = (res.area /1000000) * val->getGalvbond3_0KGPM() * 1000;
+            materialCost = val->getGalvbond3_0mmPrice() / 1000000 * area;
+            weight = (area /1000000) * val->getGalvbond3_0KGPM() * 1000;
         }
     }
 
@@ -90,27 +96,75 @@ Result CableCover::calculate()
 
     if(ui->finishComboBox->currentText() == finishesItems.at(1))
     {
-        res.finishingCost = res.weight/1000 * val->getGalvanisingPKG();
+        finishingCost = weight/1000 * val->getGalvanisingPKG();
 
-        res.finishingCost = res.finishingCost < val->getGalvanisingMin()
-                ? val->getGalvanisingMin() : res.finishingCost;
+        finishingCost = finishingCost < val->getGalvanisingMin()
+                ? val->getGalvanisingMin() : finishingCost;
     }
     else if(ui->finishComboBox->currentText() == finishesItems.at(2))
     {
-        res.finishingCost = res.area /1000000 * val->getPowderCotePMS();
+        finishingCost = area /1000000 * val->getPowderCotePMS();
 
-        res.finishingCost = res.finishingCost < val->getGalvanisingMin()
-                ? val->getGalvanisingMin() : res.finishingCost;
+        finishingCost = finishingCost < val->getGalvanisingMin()
+                ? val->getGalvanisingMin() : finishingCost;
     }
     else if(ui->finishComboBox->currentText() == finishesItems.at(3))
     {
-        res.finishingCost = res.area /1000000 * val->getSprayPaintPMS();
+        finishingCost = area /1000000 * val->getSprayPaintPMS();
 
-        res.finishingCost = res.finishingCost < val->getSprayPaintMin()
-                ? val->getSprayPaintMin() : res.finishingCost;
+        finishingCost = finishingCost < val->getSprayPaintMin()
+                ? val->getSprayPaintMin() : finishingCost;
     }
-    res.profitMargin = val->getProfitMargin();
+    profitMargin = val->getProfitMargin();
 
-    res.complete(true);
-    return res;
+}
+
+void CableCover::createPdf(const QString &name, const QString &phone,
+                           const QString &company, const QString &email)
+{
+#ifdef Q_OS_WIN32
+
+    qDebug() << "this function is Called";
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save PDF File"),"untitled.pdf",
+                                                    tr("PDF Files (*.pdf *.PDF)"));
+    if(filename.isEmpty())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Please Select a product befre you can print a pdf");
+        msgBox.exec();
+        return;
+    }
+    else
+    {
+        PdfGenerator pdfgen(filename);
+        if(!pdfgen.start())
+            return;
+
+        QString oldfilePath(pdfPath); // pdfPath is a const in the header
+
+        QFile file(pdfPath);
+        if(!file.exists()) // check if the input flie exist
+        {
+            oldfilePath = QFileDialog::getOpenFileName(0, tr("Open TEMPLATE PDF File"),"TemplateCableCover.pdf",
+                                                       tr("PDF Files (*.pdf *.PDF)"));
+        }
+        if(pdfgen.createContextFromPdf(oldfilePath))
+        {
+            pdfgen.putText(name, 100, 40);
+            // do all the writing in the pdf file
+            pdfgen.putText(QString::number(getFinalPrice()), 490, 500);
+            //    pdfgen.setFixingFlange("22 mm");
+            //    pdfgen.setWidthInternal("12 mm");
+            pdfgen.finishAndWrite();
+        }
+    }
+
+
+#endif  //Q_OS_WIN32
+
+#ifdef Q_OS_LINUX
+   QMessageBox msgBox;
+    msgBox.setText("This only works in Windows for now");
+    msgBox.exec();
+#endif
 }

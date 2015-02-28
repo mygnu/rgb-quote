@@ -208,10 +208,10 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
-         <widget class="QLineEdit" name="companyNameLE"/>
+         <widget class="QLineEdit" name="companyLE"/>
         </item>
         <item>
-         <widget class="QLineEdit" name="contactNameLE"/>
+         <widget class="QLineEdit" name="nameLE"/>
         </item>
        </layout>
       </item>

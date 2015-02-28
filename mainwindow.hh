@@ -9,12 +9,10 @@
 #include "ccprefdialog.hh"
 #include "cablecover.hh"
 #include "pdfgenerator.hh"
-#include "result.h"
 
 namespace Ui {
 class MainWindow;
 }
-static const QString pdfPath = QDir::currentPath() + "/TemplateCableCover.pdf";
 
 class MainWindow : public QMainWindow
 {
@@ -26,21 +24,21 @@ public:
 
 private slots:
     void onPrefClicked();
+    void onCalculateClicked();
+    void onPdfPrintClicked();
     void selectionMade(const QString &current);
-    void onCreatePdfClicked();
-    void calculate();
+
 private:
-    Result res;
     CCValues values;
     Ui::MainWindow *ui;
     QAction *editPrefAct{nullptr};
     QMenu *editMenu{nullptr};
-    CableCover *cableCover1{nullptr};
+    CableCover *ccWidget{nullptr};
 
-    void createMenus();
+    void createMenusConnection();
     CCPrefDialog *pref = nullptr;
     const QVector<QString> comboItems = QVector<QString> {"Cable Cover", "Item Two"};
-    void createPdfCableCover(const QString &filename, const Result &res);
+
 };
 
 #endif // MAINWINDOW_H

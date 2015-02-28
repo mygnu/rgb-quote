@@ -5,13 +5,15 @@
 #include <QString>
 #include <QVector>
 #include <QLineEdit>
+#include <QDir>
+
 #include "ccvalues.hh"
-#include "result.h"
 
 namespace Ui {
 class CableCover;
 }
 
+static const QString pdfPath = QDir::currentPath() + "/TemplateCableCover.pdf";
 class CableCover : public QWidget
 {
     Q_OBJECT
@@ -19,9 +21,9 @@ class CableCover : public QWidget
 public:
     explicit CableCover(QWidget *parent = 0);
     ~CableCover();
-    Result getResult() const {return res;}
     void setValues(const CCValues *values);
-    Result calculate();
+    void calculate();
+    void createPdf(const QString &name, const QString &phone, const QString &company, const QString &email);
 
 private:
     Ui::CableCover *ui;
@@ -33,10 +35,18 @@ private:
     QVector<QString> finishesItems = QVector<QString>{"None", "Galvanising", "Powder Cote", "Spray Paint"};
 
     QLineEdit *customThickness;
-
-    Result res;
     const CCValues  *val;
     void setupMenus();
+    void createPdfCableCover(const QString &filename);
+
+    double labourCost{0};
+    double area{0};
+    double materialCost{0};
+    double weight{0};
+    double finishingCost{0};
+    double profitMargin{0};
+    double getTotalCost() const {return labourCost + materialCost + finishingCost;}
+    double getFinalPrice() const {return getTotalCost() + (getTotalCost() * profitMargin / 100);}
 };
 
 

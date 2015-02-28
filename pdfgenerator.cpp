@@ -1,21 +1,26 @@
 
 #include "pdfgenerator.hh"
 #include <QDebug>
-#include <QFile>
-#include <QFileDialog>
 
 #ifdef Q_OS_WIN32
 
 
-PdfGenerator::PdfGenerator(const QString &outFile)
+PdfGenerator::PdfGenerator(const QString &File):
+    outFile(File.toStdString())
 {
-    status = pdfWriter.StartPDF(outFile.toStdString(),ePDFVersion13);
+}
 
+bool PdfGenerator::start()
+{
+    if(!outFile.empty())
+        status = pdfWriter.StartPDF(outFile,ePDFVersion13);
+    if(status == eSuccess)
+        return true;
+    return false;
 }
 
 PdfGenerator::~PdfGenerator()
 {
-    finishAndWrite();
 }
 
 void PdfGenerator::putText(const QString &text, int xAxis, int yAxis)
@@ -56,6 +61,7 @@ bool PdfGenerator::createContextFromPdf(const QString &oldPdfFile)
     if(!arialTTF)
     {
         qDebug() << "can't load font";
+        delete page;
         return false;
     }
     contentContext->k(0,0,0,1); // set color black
@@ -89,5 +95,6 @@ bool PdfGenerator::finishAndWrite()
     qDebug()<<"Failed in creating PDF file\n";
     return false;
 }
+
 
 #endif // Q_OS_WIN32

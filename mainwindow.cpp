@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    createMenus();
+    createMenusConnection();
     values.load();
     if(values.getOpenAtStartup())
         onPrefClicked();
@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::createMenus()
+void MainWindow::createMenusConnection()
 {
     editPrefAct =  new QAction(QIcon(), tr("&Preferences"), this);
     connect(editPrefAct, SIGNAL(triggered()), this, SLOT(onPrefClicked()));
@@ -33,109 +33,76 @@ void MainWindow::createMenus()
 
     for(auto item : comboItems)
         ui->comboBox->addItem(item);
+
     selectionMade(ui->comboBox->currentText());
 
     connect(ui->comboBox, SIGNAL(currentIndexChanged(QString)),
             this, SLOT(selectionMade(QString)));
     connect(ui->pushButtonPrintPdf, SIGNAL(clicked()),
-            this, SLOT(onCreatePdfClicked()));
+            this, SLOT(onPdfPrintClicked()));
+    connect(ui->pushButtonCalculate, SIGNAL(clicked()),
+            this, SLOT(onCalculateClicked()));
 }
 
 void MainWindow::selectionMade(const QString &current)
 {
     if(current == comboItems.at(0)) // if it is cable cover
     {
-        cableCover1 = cableCover1 == nullptr
-                ? new CableCover(this) : cableCover1;
+        ccWidget = ccWidget == nullptr
+                ? new CableCover(this) : ccWidget;
         ui->Item_label->setText(comboItems.at(0));
 
-        cableCover1->setValues(&values);
-        connect(ui->pushButtonCalculate, SIGNAL(clicked()),
-                this, SLOT(calculate()));
-
-        ui->scrollArea->setWidget(cableCover1);
+        ccWidget->setValues(&values);
+        ui->scrollArea->setWidget(ccWidget);
         QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
     }
 
     else
     {
-        if(cableCover1 != nullptr)
+        if(ccWidget != nullptr)
         {
-            delete cableCover1;
-            cableCover1 = nullptr;
+            delete ccWidget;
+            ccWidget = nullptr;
         }
     }
 }
 
-void MainWindow::calculate()
+void MainWindow::onCalculateClicked()
 {
-    if(cableCover1 != nullptr)
+    if(ui->comboBox->currentText() == comboItems.at(0))
     {
-        res = cableCover1->calculate();
-        QMessageBox msgBox;
-        msgBox.setText("Total Cost: " + QString::number(res.getTotalCost()) + "\n"
-                       + "Final Value: " + QString::number(res.getFinalPrice()));
-        msgBox.exec();
+        ccWidget->calculate();
         ui->pushButtonPrintPdf->setEnabled(true);
+    }
+    else if(ui->comboBox->currentText() == comboItems.at(1))
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Please select an Item before you can calculate");
+        msgBox.exec();
+        ui->pushButtonPrintPdf->setEnabled(false);
+    }
+}
 
+void MainWindow::onPdfPrintClicked()
+{
+    if(ccWidget != nullptr)
+    {
+        ccWidget->createPdf(ui->nameLE->text(), ui->phoneLE->text(),
+                            ui->companyLE->text(), ui->emailLE->text());
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Please Calculate an Item before you can printpdf");
+        msgBox.exec();
+        ui->pushButtonPrintPdf->setEnabled(false);
     }
 
 }
-
 
 void MainWindow::onPrefClicked()
 {
     pref = new CCPrefDialog(values, this);
     pref->setAttribute(Qt::WA_DeleteOnClose);
     pref->show();
-}
-
-void MainWindow::onCreatePdfClicked()
-{
-#ifdef Q_OS_WIN32
-    if(ui->comboBox->currentText() == comboItems.at(0))
-        {
-            QString filename = QFileDialog::getSaveFileName(this, tr("Save PDF File"),"untitled.pdf",
-                                                            tr("PDF Files (*.pdf *.PDF)"));
-            if(!filename.isEmpty())
-            {
-                createPdfCableCover(filename, res);
-            }
-        }
-
-    else
-    {
-        QMessageBox msgBox;
-        msgBox.setText("Please Select a product befre you can print a pdf");
-        msgBox.exec();
-    }
-
-
-#endif  //Q_OS_WIN32
-
-#ifdef Q_OS_LINUX
-   QMessageBox msgBox;
-    msgBox.setText("This only works in Windows for now");
-    msgBox.exec();
-#endif
-}
-
-void MainWindow::createPdfCableCover(const QString &filename, const Result &res)
-{
-#ifdef Q_OS_WIN32
-    PdfGenerator pdfgen(filename);
-
-    QString oldfilePath(pdfPath);
-
-    QFile file(pdfPath);
-    if(!file.exists())
-    {
-        oldfilePath = QFileDialog::getOpenFileName(0, tr("Open TEMPLATE PDF File"),"TemplateCableCover.pdf",
-                                                   tr("PDF Files (*.pdf *.PDF)"));
-    }
-    pdfgen.createContextFromPdf(oldfilePath);
-    pdfgen.putText(QString::number(res.getFinalPrice()), 490, 500);
-//    pdfgen.setFixingFlange("22 mm");
-//    pdfgen.setWidthInternal("12 mm");
-#endif  //Q_OS_WIN32
 }
