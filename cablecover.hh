@@ -6,6 +6,7 @@
 #include <QVector>
 #include <QLineEdit>
 #include <QDir>
+#include <QDate>
 
 #include "ccvalues.hh"
 
@@ -47,6 +48,7 @@ private:
     double profitMargin{0};
     double getTotalCost() const {return labourCost + materialCost + finishingCost;}
     double getFinalPrice() const {return getTotalCost() + (getTotalCost() * profitMargin / 100);}
+    QString getDate() const { return QDate::currentDate().toString("dd MMMM yyyy");}
 };
 
 

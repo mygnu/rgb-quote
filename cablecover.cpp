@@ -150,7 +150,9 @@ void CableCover::createPdf(const QString &name, const QString &phone,
         }
         if(pdfgen.createContextFromPdf(oldfilePath))
         {
-            pdfgen.putText(name, 100, 40);
+            pdfgen.putText(getDate(), 490, 700);
+            pdfgen.putText(name, 130, 115);
+            pdfgen.putText(company, 130, 135);
             // do all the writing in the pdf file
             pdfgen.putText(QString::number(getFinalPrice()), 490, 500);
             //    pdfgen.setFixingFlange("22 mm");
