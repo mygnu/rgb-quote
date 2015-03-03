@@ -1,4 +1,4 @@
-#include "ccvalues.hh"
+#include "values.hh"
 
 CCValues::CCValues():
     settings(QSettings::IniFormat, QSettings::UserScope, "rgbQuoteApp", "config")

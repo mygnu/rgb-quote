@@ -7,7 +7,7 @@
 
 #include "cablecover.hh"
 #include "ui_cablecover.h"
-#include "pdfgenerator.hh"
+#include "../pdfgenerator.hh"
 
 CableCover::CableCover(QWidget *parent) :
     QWidget(parent),

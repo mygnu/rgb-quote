@@ -8,7 +8,7 @@
 #include <QDir>
 #include <QDate>
 
-#include "ccvalues.hh"
+#include "values.hh"
 
 namespace Ui {
 class CableCover;

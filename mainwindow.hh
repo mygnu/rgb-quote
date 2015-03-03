@@ -6,8 +6,8 @@
 #include <QString>
 #include <QDir>
 
-#include "ccprefdialog.hh"
-#include "cablecover.hh"
+#include "cc/prefdialog.hh"
+#include "cc/cablecover.hh"
 #include "pdfgenerator.hh"
 
 namespace Ui {

@@ -5,7 +5,7 @@
 #include <QLineEdit>
 #include <QDoubleSpinBox>
 
-#include "ccvalues.hh"
+#include "values.hh"
 
 namespace Ui {
 class PrefDialog;

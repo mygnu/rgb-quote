@@ -40,22 +40,22 @@ win32 {
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    cablecover.cpp \
     pdfgenerator.cpp \
-    ccprefdialog.cpp \
-    ccvalues.cpp
+    cc/cablecover.cpp \
+    cc/prefdialog.cpp \
+    cc/values.cpp
 
 HEADERS  += \
-    cablecover.hh \
     mainwindow.hh \
     pdfgenerator.hh \
-    ccprefdialog.hh \
-    ccvalues.hh
+    cc/cablecover.hh \
+    cc/prefdialog.hh \
+    cc/values.hh
 
 
 FORMS    += mainwindow.ui \
-    cablecover.ui \
-    ccprefdialog.ui
+    cc/cablecover.ui \
+    cc/prefdialog.ui
 
 RC_FILE = icon.rc
 
