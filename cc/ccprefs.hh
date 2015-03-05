@@ -26,19 +26,19 @@
 #include <QLineEdit>
 #include <QDoubleSpinBox>
 
-#include "values.hh"
+#include "ccvalues.hh"
 
 namespace Ui {
 class PrefDialog;
 }
 
-class CCPrefDialog : public QDialog
+class CCPrefs : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CCPrefDialog(CCValues &val, QWidget *parent = 0);
-    ~CCPrefDialog();
+    explicit CCPrefs(CCValues &val, QWidget *parent = 0);
+    ~CCPrefs();
 
 private slots:
     void onAccept();

@@ -34,8 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     createMenusConnection();
-    values.load();
-    if(values.getOpenAtStartup())
+    ccValues.load();
+    if(ccValues.getOpenAtStartup())
         onPrefClicked();
 }
 
@@ -73,7 +73,7 @@ void MainWindow::selectionMade(const QString &current)
                 ? new CableCover(this) : ccWidget;
         ui->Item_label->setText(comboItems.at(0));
 
-        ccWidget->setValues(&values);
+        ccWidget->setValues(&ccValues);
         ui->scrollArea->setWidget(ccWidget);
         QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
     }
@@ -123,7 +123,7 @@ void MainWindow::onPdfPrintClicked()
 
 void MainWindow::onPrefClicked()
 {
-    pref = new CCPrefDialog(values, this);
+    pref = new CCPrefs(ccValues, this);
     pref->setAttribute(Qt::WA_DeleteOnClose);
     pref->show();
 }

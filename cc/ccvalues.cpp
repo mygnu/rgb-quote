@@ -19,7 +19,7 @@
 * along with rgb-quote. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "values.hh"
+#include "ccvalues.hh"
 
 CCValues::CCValues():
     settings(QSettings::IniFormat, QSettings::UserScope, "rgbQuoteApp", "config")

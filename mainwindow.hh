@@ -27,7 +27,7 @@
 #include <QString>
 #include <QDir>
 
-#include "cc/prefdialog.hh"
+#include "cc/ccprefs.hh"
 #include "cc/cablecover.hh"
 #include "pdfgenerator.hh"
 
@@ -50,14 +50,14 @@ private slots:
     void selectionMade(const QString &current);
 
 private:
-    CCValues values;
+    CCValues ccValues;
     Ui::MainWindow *ui;
     QAction *editPrefAct{nullptr};
     QMenu *editMenu{nullptr};
     CableCover *ccWidget{nullptr};
 
     void createMenusConnection();
-    CCPrefDialog *pref = nullptr;
+    CCPrefs *pref = nullptr;
     const QVector<QString> comboItems = QVector<QString> {"Cable Cover", "Item Two"};
 
 };

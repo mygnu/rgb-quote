@@ -20,13 +20,13 @@
 */
 
 #include <QVariant>
-#include "prefdialog.hh"
+#include "ccprefs.hh"
 #include "ui_prefdialog.h"
 
 #include <QDebug>
 #include <QScroller>
 
-CCPrefDialog::CCPrefDialog(CCValues &val, QWidget *parent) :
+CCPrefs::CCPrefs(CCValues &val, QWidget *parent) :
     QDialog(parent),
     values(&val),
     ui(new Ui::PrefDialog)
@@ -42,12 +42,12 @@ CCPrefDialog::CCPrefDialog(CCValues &val, QWidget *parent) :
     ui->tabWidget->setCurrentIndex(0);
 }
 
-CCPrefDialog::~CCPrefDialog()
+CCPrefs::~CCPrefs()
 {
     delete ui;
 }
 
-void CCPrefDialog::loadValuesInGui()
+void CCPrefs::loadValuesInGui()
 {
 
     QSettings &settings = values->settings;
@@ -87,13 +87,13 @@ void CCPrefDialog::loadValuesInGui()
 
 }
 
-void CCPrefDialog::onAccept()
+void CCPrefs::onAccept()
 {
     saveValues();
     values->load();
 }
 
-void CCPrefDialog::saveValues()
+void CCPrefs::saveValues()
 {
     QSettings &settings = values->settings;
     settings.setValue("Application/edited", true);
@@ -135,7 +135,7 @@ void CCPrefDialog::saveValues()
 
 
 
-void CCPrefDialog::setDoubleValue(QLineEdit *le, QString name)
+void CCPrefs::setDoubleValue(QLineEdit *le, QString name)
 {
     if(values->settings.contains(name))
         le->setText(values->settings.value(name).toString());
@@ -143,7 +143,7 @@ void CCPrefDialog::setDoubleValue(QLineEdit *le, QString name)
         le->setPlaceholderText("Set Value");
 }
 
-void CCPrefDialog::setDoubleValue(QDoubleSpinBox *sb, QString name)
+void CCPrefs::setDoubleValue(QDoubleSpinBox *sb, QString name)
 {
     if(values->settings.contains(name))
         sb->setValue(values->settings.value(name).toDouble());

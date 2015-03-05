@@ -29,13 +29,24 @@
 #include <QDir>
 #include <QDate>
 
-#include "values.hh"
+#include "ccvalues.hh"
 
 namespace Ui {
 class CableCover;
 }
 
+/**
+ * @brief pdfPath
+ * Const path to tempelate pdf file, it will be shipped with the program,
+ * but if this doesn't exist user will get a choice to select the template
+ */
 static const QString pdfPath = QDir::currentPath() + "/TemplateCableCover.pdf";
+
+/**
+ * @brief The CableCover class
+ * the base class for displaying(as a widget), storing and calculating values
+ * related to the product CableCover
+ */
 class CableCover : public QWidget
 {
     Q_OBJECT

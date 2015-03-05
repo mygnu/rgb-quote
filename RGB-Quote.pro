@@ -42,15 +42,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     pdfgenerator.cpp \
     cc/cablecover.cpp \
-    cc/prefdialog.cpp \
-    cc/values.cpp
+    cc/ccvalues.cpp \
+    cc/ccprefs.cpp
 
 HEADERS  += \
     mainwindow.hh \
     pdfgenerator.hh \
     cc/cablecover.hh \
-    cc/prefdialog.hh \
-    cc/values.hh
+    cc/ccvalues.hh \
+    cc/ccprefs.hh
 
 
 FORMS    += mainwindow.ui \
