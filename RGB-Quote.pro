@@ -57,7 +57,7 @@ FORMS    += mainwindow.ui \
     cc/cablecover.ui \
     cc/prefdialog.ui
 
-RC_FILE = icon.rc
+RC_FILE = data/icon.rc
 
 
 
