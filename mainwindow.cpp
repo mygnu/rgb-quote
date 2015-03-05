@@ -70,10 +70,9 @@ void MainWindow::selectionMade(const QString &current)
     if(current == comboItems.at(0)) // if it is cable cover
     {
         ccWidget = ccWidget == nullptr
-                ? new CableCover(this) : ccWidget;
-        ui->Item_label->setText(comboItems.at(0));
+                ? new CableCover(this, &ccValues) : ccWidget;
 
-        ccWidget->setValues(&ccValues);
+        ui->Item_label->setText(comboItems.at(0));
         ui->scrollArea->setWidget(ccWidget);
         QScroller::grabGesture(ui->scrollArea, QScroller::TouchGesture);
     }
@@ -123,7 +122,7 @@ void MainWindow::onPdfPrintClicked()
 
 void MainWindow::onPrefClicked()
 {
-    pref = new CCPrefs(ccValues, this);
+    pref = new CCPrefs(this, &ccValues);
     pref->setAttribute(Qt::WA_DeleteOnClose);
     pref->show();
 }

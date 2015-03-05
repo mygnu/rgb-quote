@@ -52,7 +52,7 @@ class CableCover : public QWidget
     Q_OBJECT
 
 public:
-    explicit CableCover(QWidget *parent = 0);
+    explicit CableCover(QWidget *parent = nullptr, CCValues *ccvals = nullptr);
     ~CableCover();
     void setValues(const CCValues *values);
     void calculate();

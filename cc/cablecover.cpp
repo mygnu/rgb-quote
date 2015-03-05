@@ -30,8 +30,9 @@
 #include "ui_cablecover.h"
 #include "../pdfgenerator.hh"
 
-CableCover::CableCover(QWidget *parent) :
+CableCover::CableCover(QWidget *parent, CCValues *ccvals) :
     QWidget(parent),
+    val(ccvals),
     ui(new Ui::CableCover)
 {
     ui->setupUi(this);
@@ -46,7 +47,8 @@ CableCover::~CableCover()
 
 void CableCover::setValues(const CCValues *values)
 {
-    val = values;
+    if(values != nullptr && val == nullptr)
+        val = values;
 }
 
 void CableCover::setupMenus()

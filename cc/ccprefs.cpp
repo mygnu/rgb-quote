@@ -26,9 +26,9 @@
 #include <QDebug>
 #include <QScroller>
 
-CCPrefs::CCPrefs(CCValues &val, QWidget *parent) :
+CCPrefs::CCPrefs(QWidget *parent, CCValues *val) :
     QDialog(parent),
-    values(&val),
+    values(val),
     ui(new Ui::PrefDialog)
 {
     ui->setupUi(this);

@@ -37,7 +37,7 @@ class CCPrefs : public QDialog
     Q_OBJECT
 
 public:
-    explicit CCPrefs(CCValues &val, QWidget *parent = 0);
+    explicit CCPrefs(QWidget *parent = 0, CCValues *val = nullptr);
     ~CCPrefs();
 
 private slots:
