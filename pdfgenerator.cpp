@@ -20,7 +20,7 @@
 */
 
 #include "pdfgenerator.hh"
-#include <QDebug>
+#include <QMessageBox>
 
 #ifdef Q_OS_WIN32
 
@@ -34,20 +34,18 @@ bool PdfGenerator::start()
 {
     if(!outFile.empty())
         status = pdfWriter.StartPDF(outFile,ePDFVersion13);
+
     if(status == eSuccess)
         return true;
+
+    QMessageBox msgBox;
+    msgBox.setText("Unable to start the out file");
+    msgBox.exec();
     return false;
-}
+  }
 
-PdfGenerator::~PdfGenerator()
-{
-}
+PdfGenerator::~PdfGenerator() {}
 
-void PdfGenerator::putText(const QString &text, int xAxis, int yAxis)
-{
-    contentContext->Tm(8,0,0,10,xAxis,yAxis);
-    contentContext->Tj(text.toStdString());
-}
 
 bool PdfGenerator::createContextFromPdf(const QString &oldPdfFile)
 {
@@ -59,7 +57,10 @@ bool PdfGenerator::createContextFromPdf(const QString &oldPdfFile)
     if(result.first != eSuccess)
     {
         status = eFailure;
-        qDebug() << "failed to open existing file";
+        QMessageBox msgBox;
+        msgBox.setText("Failed to open template pdf file");
+        msgBox.exec();
+//        qDebug() << "";
         return false;
     }
 
@@ -80,7 +81,10 @@ bool PdfGenerator::createContextFromPdf(const QString &oldPdfFile)
     arialTTF = pdfWriter.GetFontForFile(fontPath.toStdString());
     if(!arialTTF)
     {
-        qDebug() << "can't load font";
+        status = eFailure;
+        QMessageBox msgBox;
+        msgBox.setText("Can't load arial font for pdf creation");
+        msgBox.exec();
         delete page;
         return false;
     }
@@ -91,8 +95,22 @@ bool PdfGenerator::createContextFromPdf(const QString &oldPdfFile)
     return true;
 }
 
+bool PdfGenerator::putText(const QString &text, int xAxis, int yAxis)
+{
+    if(status != eFailure)
+    {
+        contentContext->Tm(8,0,0,10,xAxis,yAxis);
+        contentContext->Tj(text.toStdString());
+        return true;
+    }
+    return false;
+}
+
 bool PdfGenerator::finishAndWrite()
 {
+    if(status == eFailure)
+        return false;
+
     contentContext->ET();
     status = pdfWriter.EndPageContentContext(contentContext);
     if(status != eSuccess)
@@ -109,10 +127,14 @@ bool PdfGenerator::finishAndWrite()
 
     if(eSuccess == status)
     {
-        qDebug() <<"Succeeded in creating PDF file\n";
+        QMessageBox msgBox;
+        msgBox.setText("Succeeded in creating PDF file");
+        msgBox.exec();
         return true;
     }
-    qDebug()<<"Failed in creating PDF file\n";
+    QMessageBox msgBox;
+    msgBox.setText("Failed in creating PDF file");
+    msgBox.exec();
     return false;
 }
 

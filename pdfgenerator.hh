@@ -55,7 +55,7 @@ public:
     void setFixingFlange (const QString &text){ putText(text, 490, 410);}
     void setWidthInternal(const QString &text){ putText(text, 490, 390);}
 
-    void putText(const QString &text, int xAxis, int yAxis);
+    bool putText(const QString &text, int xAxis, int yAxis);
 
 private:
     std::string outFile;
