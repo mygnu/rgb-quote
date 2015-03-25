@@ -43,6 +43,7 @@ using namespace PDFHummus;
 //static const string scSystemFontsPath = "C:\\Windows\\Fonts\\";
 static const QString fontPath = QStandardPaths::standardLocations(QStandardPaths::FontsLocation).at(0) + "/arial.ttf";
 
+
 class PdfGenerator
 {
 public:

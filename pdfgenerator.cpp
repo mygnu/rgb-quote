@@ -21,14 +21,12 @@
 
 #include "pdfgenerator.hh"
 #include <QMessageBox>
-
 #ifdef Q_OS_WIN32
 
 
 PdfGenerator::PdfGenerator(const QString &File):
     outFile(File.toStdString())
-{
-}
+{}
 
 bool PdfGenerator::start()
 {

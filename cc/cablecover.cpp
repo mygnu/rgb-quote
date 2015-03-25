@@ -146,8 +146,6 @@ void CableCover::createPdf(const QString &name, const QString &phone,
                            const QString &company, const QString &email)
 {
 #ifdef Q_OS_WIN32
-
-    qDebug() << "this function is Called";
     QString filename = QFileDialog::getSaveFileName(this, tr("Save PDF File"),"untitled.pdf",
                                                     tr("PDF Files (*.pdf *.PDF)"));
     if(filename.isEmpty())
