@@ -35,6 +35,12 @@ namespace Ui {
 class MainWindow;
 }
 
+/**
+ * @brief The MainWindow class
+ * creates the main window for the application
+ * handles signals and for the bottom buttons
+ *
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

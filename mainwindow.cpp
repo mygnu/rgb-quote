@@ -32,9 +32,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    ui->setupUi(this); // setup the user interface from .ui file
     createMenusConnection();
     ccValues.load();
+
     if(ccValues.getOpenAtStartup())
         onPrefClicked();
 }
@@ -43,7 +44,11 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
+/**
+ * @brief MainWindow::createMenusConnection
+ * creates QActions for edit menu
+ * connects the signals for the combobox selection to be handeled
+ */
 void MainWindow::createMenusConnection()
 {
     editPrefAct =  new QAction(QIcon(), tr("&Preferences"), this);
@@ -64,11 +69,19 @@ void MainWindow::createMenusConnection()
     connect(ui->pushButtonCalculate, SIGNAL(clicked()),
             this, SLOT(onCalculateClicked()));
 }
-
+/**
+ * @brief MainWindow::selectionMade
+ * chages the main widget according to the selection text
+ *
+ * @param current is the text from the combobox
+ *
+ */
 void MainWindow::selectionMade(const QString &current)
 {
     if(current == comboItems.at(0)) // if it is cable cover
     {
+        // if ccWidget is null create new otherwise asignt the
+        // same value
         ccWidget = ccWidget == nullptr
                 ? new CableCover(this, &ccValues) : ccWidget;
 
