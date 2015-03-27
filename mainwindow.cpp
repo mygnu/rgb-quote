@@ -34,9 +34,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this); // setup the user interface from .ui file
     createMenusConnection();
-    ccValues.load();
+    values.load_common_values();
 
-    if(ccValues.getOpenAtStartup())
+    // if open at startup is true or ccValues doesent have any values
+    if(values.getOpenAtStartup())
         onPrefClicked();
 }
 
@@ -83,7 +84,7 @@ void MainWindow::selectionMade(const QString &current)
         // if ccWidget is null create new otherwise asignt the
         // same value
         ccWidget = ccWidget == nullptr
-                ? new CableCover(this, &ccValues) : ccWidget;
+                ? new CableCover(this, &values) : ccWidget;
 
         ui->Item_label->setText(comboItems.at(0));
         ui->scrollArea->setWidget(ccWidget);
@@ -135,7 +136,7 @@ void MainWindow::onPdfPrintClicked()
 
 void MainWindow::onPrefClicked()
 {
-    pref = new CCPrefs(this, &ccValues);
+    pref = new CCPrefs(this, &values);
     pref->setAttribute(Qt::WA_DeleteOnClose);
     pref->show();
 }

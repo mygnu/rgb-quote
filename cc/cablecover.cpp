@@ -30,7 +30,7 @@
 #include "ui_cablecover.h"
 #include "../pdfgenerator.hh"
 
-CableCover::CableCover(QWidget *parent, CCValues *ccvals) :
+CableCover::CableCover(QWidget *parent, Values *ccvals) :
     QWidget(parent),
     val(ccvals),
     ui(new Ui::CableCover)
@@ -45,7 +45,7 @@ CableCover::~CableCover()
     delete ui;
 }
 
-void CableCover::setValues(const CCValues *values)
+void CableCover::setValues(const Values *values)
 {
     if(values != nullptr && val == nullptr)
         val = values;

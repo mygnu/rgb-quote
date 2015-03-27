@@ -56,7 +56,7 @@ private slots:
     void selectionMade(const QString &current);
 
 private:
-    CCValues ccValues;
+    Values values;
     Ui::MainWindow *ui;
     QAction *editPrefAct{nullptr};
     QMenu *editMenu{nullptr};

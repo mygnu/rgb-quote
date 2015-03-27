@@ -24,16 +24,17 @@
 
 #include <QSettings>
 
-class CCValues
+class Values
 {
 
 public:
-    CCValues();
-    ~CCValues();
+    Values();
+    ~Values();
 
     QSettings settings;
 
-    void load();
+    void load_common_values();
+    void load_cc_values();
     void addOrder();
     double getOpenEnds()const {return openEndsPrice;}
     double getOneEndClosed()const {return oneEndClosedPrice;}
@@ -66,7 +67,6 @@ public:
     bool getOpenAtStartup()const {return openAtStartup;}
 
 private:
-
     double openEndsPrice{1};
     double oneEndClosedPrice{1};
     double bothEndsClosedPrice{1};

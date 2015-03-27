@@ -282,9 +282,12 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="pushButtonPrintPdf">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
-         <string>Reset</string>
+         <string>Print Pdf</string>
         </property>
        </widget>
       </item>
@@ -296,12 +299,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButtonPrintPdf">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
+       <widget class="QPushButton" name="pushButtonClose">
         <property name="text">
-         <string>Print Pdf</string>
+         <string>Close</string>
         </property>
        </widget>
       </item>
@@ -333,9 +333,7 @@
  <tabstops>
   <tabstop>comboBox</tabstop>
   <tabstop>scrollArea</tabstop>
-  <tabstop>pushButton</tabstop>
-  <tabstop>pushButtonCalculate</tabstop>
-  <tabstop>pushButtonPrintPdf</tabstop>
+  <tabstop>pushButtonClose</tabstop>
  </tabstops>
  <resources/>
  <connections/>

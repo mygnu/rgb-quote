@@ -19,26 +19,25 @@
 * along with rgb-quote. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "ccvalues.hh"
+#include "values.hh"
 
-CCValues::CCValues():
+Values::Values():
     settings(QSettings::IniFormat, QSettings::UserScope, "rgbQuoteApp", "config")
 {
 
 }
 
-CCValues::~CCValues()
+Values::~Values()
 {
 
 }
 
-void CCValues::load()
+void Values::load_cc_values()
 {
     if(settings.contains("Application/edited") && settings.value("Application/edited").toBool())
-    {
-        orderNumber = settings.value("cableCover/orderNumber").toInt();
-        openAtStartup = settings.value("Application/openAtStartup").toBool();
 
+    {
+        load_common_values();
         openEndsPrice = settings.value("cableCover/openEndsPrice").toDouble();
         oneEndClosedPrice = settings.value("cableCover/oneEndClosedPrice").toDouble();
         bothEndsClosedPrice = settings.value("cableCover/bothEndsClosedPrice").toDouble();
@@ -66,7 +65,13 @@ void CCValues::load()
     }
 }
 
-void CCValues::addOrder()
+void Values::addOrder()
 {
     settings.setValue("Application/orderNumber", ++orderNumber);
+}
+
+void Values::load_common_values()
+{
+    orderNumber = settings.value("Application/orderNumber").toInt();
+    openAtStartup = settings.value("Application/openAtStartup").toBool();
 }

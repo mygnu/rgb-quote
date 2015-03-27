@@ -29,7 +29,8 @@
 #include <QDir>
 #include <QDate>
 
-#include "ccvalues.hh"
+#include "../values.hh"
+#include "../virtualproduct.hh"
 
 namespace Ui {
 class CableCover;
@@ -47,14 +48,14 @@ static const QString pdfPath = QDir::currentPath() + "/TemplateCableCover.pdf";
  * the base class for displaying(as a widget), storing and calculating values
  * related to the product CableCover
  */
-class CableCover : public QWidget
+class CableCover : public QWidget, public VirtualProduct
 {
     Q_OBJECT
 
 public:
-    explicit CableCover(QWidget *parent = nullptr, CCValues *ccvals = nullptr);
+    explicit CableCover(QWidget *parent = nullptr, Values *ccvals = nullptr);
     ~CableCover();
-    void setValues(const CCValues *values);
+    void setValues(const Values *values);
     void calculate();
     void createPdf(const QString &name, const QString &phone, const QString &company, const QString &email);
 
@@ -68,7 +69,7 @@ private:
     QVector<QString> finishesItems = QVector<QString>{"None", "Galvanising", "Powder Cote", "Spray Paint"};
 
     QLineEdit *customThickness;
-    const CCValues  *val;
+    const Values  *val;
     void setupMenus();
     void createPdfCableCover(const QString &filename);
 

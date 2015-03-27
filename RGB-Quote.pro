@@ -42,15 +42,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     pdfgenerator.cpp \
     cc/cablecover.cpp \
-    cc/ccvalues.cpp \
-    cc/ccprefs.cpp
+    cc/ccprefs.cpp \
+    values.cpp
 
 HEADERS  += \
     mainwindow.hh \
     pdfgenerator.hh \
     cc/cablecover.hh \
-    cc/ccvalues.hh \
-    cc/ccprefs.hh
+    cc/ccprefs.hh \
+    virtualproduct.hh \
+    values.hh
 
 
 FORMS    += mainwindow.ui \

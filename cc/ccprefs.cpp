@@ -26,7 +26,7 @@
 #include <QDebug>
 #include <QScroller>
 
-CCPrefs::CCPrefs(QWidget *parent, CCValues *val) :
+CCPrefs::CCPrefs(QWidget *parent, Values *val) :
     QDialog(parent),
     values(val),
     ui(new Ui::PrefDialog)
@@ -90,7 +90,7 @@ void CCPrefs::loadValuesInGui()
 void CCPrefs::onAccept()
 {
     saveValues();
-    values->load();
+    values->load_cc_values();
 }
 
 void CCPrefs::saveValues()
